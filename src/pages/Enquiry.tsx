@@ -7,10 +7,10 @@ export default function Enquiry() {
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
             <h1 className="text-3xl md:text-5xl font-orbitron font-bold tracking-tight mb-4 text-foreground">
-              Complete Your Registration
+              Terminez Votre Inscription
             </h1>
             <p className="text-muted-foreground text-lg font-rajdhani">
-              Enter your details below to access the exclusive platform.
+              Entrez vos coordonnées ci-dessous pour accéder à la plateforme exclusive.
             </p>
           </div>
           <ContactForm formId="enquiry-form" />

@@ -1,10 +1,10 @@
 import { TiltCard } from "./TiltCard";
 
 const testimonials = [
-  { n: "Maya Chen", r: "Quant Trader", q: "ORBITX FINANCE replaced my entire stack. The AI signals alone paid for the year in two weeks." },
-  { n: "Diego Alvarez", r: "Crypto Fund GP", q: "Execution is faster than any prime broker I've used. The dashboards feel like a Bloomberg terminal from 2090." },
-  { n: "Aiko Tanaka", r: "DeFi Builder", q: "I went from manual trades to a fully automated portfolio in one afternoon. Unreal product." },
-  { n: "Marcus Webb", r: "Angel Investor", q: "The risk analytics caught a position blow-up before I did. Saved me six figures, no exaggeration." },
+  { n: "Maya Chen", r: "Trader Quantitatif", q: "ORBITX FINANCE a remplacé toute ma pile technique. Les signaux d'IA ont à eux seuls amorti l'année en deux semaines." },
+  { n: "Diego Alvarez", r: "Gérant de Fonds Crypto", q: "L'exécution est plus rapide que n'importe quel courtier principal que j'ai utilisé. Les tableaux de bord ressemblent à un terminal Bloomberg de l'année 2090." },
+  { n: "Aiko Tanaka", r: "Développeur DeFi", q: "Je suis passé de transactions manuelles à un portefeuille entièrement automatisé en un après-midi. Produit irréel." },
+  { n: "Marcus Webb", r: "Business Angel", q: "Les analyses de risques ont détecté une explosion de position avant moi. M'a fait économiser à six chiffres, sans exagération." },
 ];
 
 export function Testimonials() {
@@ -12,8 +12,8 @@ export function Testimonials() {
     <section className="relative z-10 px-6 py-24">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 text-center">
-          <div className="text-xs font-bold tracking-[0.3em] text-[color:var(--neon-purple)] mb-3">// SIGNAL FROM THE GRID</div>
-          <h2 className="font-display text-4xl md:text-5xl font-black">TRUSTED BY OPERATORS</h2>
+          <div className="text-xs font-bold tracking-[0.3em] text-[color:var(--neon-purple)] mb-3">// SIGNAL DE LA GRILLE</div>
+          <h2 className="font-display text-4xl md:text-5xl font-black">APPROUVÉ PAR LES OPÉRATEURS</h2>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {testimonials.map((t) => (

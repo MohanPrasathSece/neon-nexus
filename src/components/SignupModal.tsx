@@ -31,13 +31,13 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
 
     try {
       if (!formData.name || !formData.email || !formData.phone) {
-        toast.error("Please fill in all fields.");
+        toast.error("Veuillez remplir tous les champs.");
         setLoading(false);
         return;
       }
 
       if (!consent) {
-        toast.error("You must acknowledge the risks to proceed.");
+        toast.error("Vous devez reconnaître les risques pour continuer.");
         setLoading(false);
         return;
       }
@@ -58,7 +58,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
       });
 
       if (!crmResponse.ok) {
-        throw new Error("Failed to sync profile with CRM. Please try again.");
+        throw new Error("Échec de la synchronisation du profil avec le CRM. Veuillez réessayer.");
       }
 
       const authResponse = await fetch("/api/auth/signup", {
@@ -69,17 +69,17 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
 
       if (!authResponse.ok) {
         const errorData = await authResponse.json().catch(() => null);
-        throw new Error(errorData?.error || "Failed to create auth profile");
+        throw new Error(errorData?.error || "Échec de la création du profil d'authentification");
       }
 
-      toast.success("Signup successful! Welcome to ORBITX FINANCE.");
+      toast.success("Inscription réussie ! Bienvenue sur ORBITX FINANCE.");
       setFormData({ name: "", email: "", phone: "" });
       setConsent(false);
       onClose();
       navigate("/logged-in");
     } catch (error: any) {
       console.error(error);
-      toast.error(error.message || "An error occurred during signup. Please try again.");
+      toast.error(error.message || "Une erreur s'est produite lors de l'inscription. Veuillez réessayer.");
     } finally {
       setLoading(false);
     }
@@ -121,22 +121,22 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                   <div className="w-8 h-8 rounded-full neon-gradient animate-pulse-glow" style={{ background: "linear-gradient(135deg, var(--neon-purple), var(--neon-indigo))" }} />
                 </div>
                 <h2 className="text-2xl font-display font-black tracking-widest text-glow-purple uppercase">
-                  Register
+                  S'inscrire
                 </h2>
-                <p className="text-muted-foreground font-sans text-sm mt-2">Establish protocol access.</p>
+                <p className="text-muted-foreground font-sans text-sm mt-2">Établir l'accès au protocole.</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <label htmlFor="signup-name" className="text-xs uppercase tracking-widest font-display text-[color:var(--neon-purple)]">
-                    Designation (Name)
+                    Désignation (Nom)
                   </label>
                   <input 
                     id="signup-name" 
                     name="name" 
                     value={formData.name} 
                     onChange={handleChange} 
-                    placeholder="Operator Name"
+                    placeholder="Nom de l'Opérateur"
                     required 
                     className="w-full bg-background/50 border border-[color:var(--neon-purple)]/30 rounded-lg px-4 py-3 text-foreground font-sans focus:outline-none focus:border-[color:var(--neon-purple)] focus:ring-1 focus:ring-[color:var(--neon-purple)] transition-all placeholder:text-muted-foreground/50" 
                   />
@@ -144,7 +144,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                 
                 <div className="space-y-2">
                   <label htmlFor="signup-email" className="text-xs uppercase tracking-widest font-display text-[color:var(--neon-purple)]">
-                    Network ID (Email)
+                    ID Réseau (E-mail)
                   </label>
                   <input 
                     id="signup-email" 
@@ -160,7 +160,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                 
                 <div className="space-y-2">
                   <label htmlFor="signup-phone" className="text-xs uppercase tracking-widest font-display text-[color:var(--neon-purple)]">
-                    Commlink (Phone)
+                    Lien de Comm (Téléphone)
                   </label>
                   <input 
                     id="signup-phone" 
@@ -183,7 +183,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                     className="mt-1 w-4 h-4 rounded border-[color:var(--neon-purple)]/50 bg-background/50 text-[color:var(--neon-purple)] focus:ring-[color:var(--neon-purple)]"
                   />
                   <label htmlFor="consent" className="text-xs text-muted-foreground leading-relaxed font-sans cursor-pointer">
-                    I acknowledge that cryptocurrency investments are highly volatile and carry significant risk. I have read and agree to the Terms & Conditions.
+                    Je reconnais que les investissements en cryptomonnaie sont très volatils et comportent des risques importants. J'ai lu et j'accepte les Termes et Conditions.
                   </label>
                 </div>
 
@@ -194,7 +194,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-[color:var(--neon-purple)] to-[color:var(--neon-indigo)] opacity-90 group-hover:opacity-100 transition-opacity" />
                   <span className="relative flex items-center gap-2 text-background font-display font-bold tracking-widest text-sm uppercase">
-                    {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Uploading...</> : "Create Profile"}
+                    {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Téléchargement...</> : "Créer le Profil"}
                   </span>
                 </button>
               </form>

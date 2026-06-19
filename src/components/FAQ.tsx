@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 const faqs = [
-  { q: "How fast can I start trading?", a: "Account verification typically completes in under 3 minutes. After KYC, deposit fiat or crypto and you're live on global markets immediately." },
-  { q: "Is my crypto secure?", a: "Yes. 95% of assets sit in MPC + air-gapped cold storage with Lloyd's-backed insurance. We publish monthly proof-of-reserves." },
-  { q: "What are the fees?", a: "0.10% maker / 0.15% taker, dropping to 0% on higher tiers. No deposit fees, withdrawals at network cost only." },
-  { q: "Do you support staking?", a: "Yes. Stake 40+ assets including ETH, SOL, ADA and DOT. Rewards distributed daily, unstake any time on flexible plans." },
-  { q: "Can I use automated bots?", a: "Build no-code strategies with our visual editor, backtest against 5 years of tick data, then deploy with one click." },
+  { q: "À quelle vitesse puis-je commencer à trader ?", a: "La vérification de compte se termine généralement en moins de 3 minutes. Après le KYC, déposez des devises fiat ou des cryptos et vous êtes immédiatement en direct sur les marchés mondiaux." },
+  { q: "Ma crypto est-elle en sécurité ?", a: "Oui. 95 % des actifs se trouvent dans un stockage à froid MPC hors ligne avec une assurance Lloyd's. Nous publions une preuve de réserves mensuelle." },
+  { q: "Quels sont les frais ?", a: "0,10 % pour les makers / 0,15 % pour les takers, baissant jusqu'à 0 % sur les paliers supérieurs. Pas de frais de dépôt, retraits au coût du réseau uniquement." },
+  { q: "Prenez-vous en charge le staking ?", a: "Oui. Stakez plus de 40 actifs dont ETH, SOL, ADA et DOT. Récompenses distribuées quotidiennement, retirez votre mise à tout moment sur des plans flexibles." },
+  { q: "Puis-je utiliser des bots automatisés ?", a: "Créez des stratégies sans code avec notre éditeur visuel, backtestez sur 5 ans de données tick, puis déployez en un clic." },
 ];
 
 export function FAQ() {
@@ -14,8 +14,8 @@ export function FAQ() {
     <section className="relative z-10 px-6 py-24">
       <div className="max-w-3xl mx-auto">
         <div className="mb-12 text-center">
-          <div className="text-xs font-bold tracking-[0.3em] text-[color:var(--neon-cyan)] mb-3">// PROTOCOL.FAQ</div>
-          <h2 className="font-display text-4xl md:text-5xl font-black">ANSWERS, DECRYPTED</h2>
+          <div className="text-xs font-bold tracking-[0.3em] text-[color:var(--neon-cyan)] mb-3">// PROTOCOLE.FAQ</div>
+          <h2 className="font-display text-4xl md:text-5xl font-black">RÉPONSES, DÉCRYPTÉES</h2>
         </div>
         <div className="space-y-3">
           {faqs.map((f, i) => {

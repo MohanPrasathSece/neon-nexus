@@ -1,14 +1,14 @@
 import { TiltCard } from "./TiltCard";
 
 const features = [
-  { i: "⚡", t: "AI Investment Assistant", d: "Neural networks scan 10K+ data points per second to surface high-conviction trades.", c: "200" },
-  { i: "◈", t: "Smart Portfolio", d: "Auto-balancing baskets that rotate exposure based on volatility, momentum and risk.", c: "295" },
-  { i: "↯", t: "Instant Buy & Sell", d: "Sub-100ms execution with deep liquidity routed across 40+ global venues.", c: "340" },
-  { i: "⌬", t: "Secure Vault Wallet", d: "MPC + hardware-backed cold storage with 24/7 threat monitoring and insurance.", c: "260" },
-  { i: "◉", t: "Real-Time Analytics", d: "Customisable dashboards with on-chain signals, whale flows and sentiment heat.", c: "200" },
-  { i: "⟁", t: "Auto Trading Bots", d: "Build, backtest and deploy strategies — no code required. Live in 60 seconds.", c: "295" },
-  { i: "⬢", t: "Blockchain Security", d: "Audited smart contracts, proof-of-reserves and zero-knowledge withdrawals.", c: "10" },
-  { i: "◐", t: "Global Access", d: "Available in 180+ countries, 50+ fiat onramps, 24/7 multilingual support.", c: "220" },
+  { i: "⚡", t: "Assistant d'Investissement IA", d: "Les réseaux de neurones analysent plus de 10 000 points de données par seconde pour révéler des transactions à forte conviction.", c: "200" },
+  { i: "◈", t: "Portefeuille Intelligent", d: "Paniers à rééquilibrage automatique qui ajustent l'exposition en fonction de la volatilité, de la dynamique et du risque.", c: "295" },
+  { i: "↯", t: "Achat et Vente Instantanés", d: "Exécution en moins de 100 ms avec une liquidité profonde acheminée à travers plus de 40 places boursières mondiales.", c: "340" },
+  { i: "⌬", t: "Portefeuille Coffre-Fort Sécurisé", d: "Stockage à froid MPC + matériel avec surveillance des menaces 24/7 et assurance.", c: "260" },
+  { i: "◉", t: "Analyses en Temps Réel", d: "Tableaux de bord personnalisables avec signaux on-chain, flux de baleines et cartes de sentiment.", c: "200" },
+  { i: "⟁", t: "Bots de Trading Automatiques", d: "Créez, backtestez et déployez des stratégies — sans code. En direct en 60 secondes.", c: "295" },
+  { i: "⬢", t: "Sécurité Blockchain", d: "Contrats intelligents audités, preuves de réserves et retraits zero-knowledge.", c: "10" },
+  { i: "◐", t: "Accès Mondial", d: "Disponible dans plus de 180 pays, plus de 50 passerelles fiat, support multilingue 24/7.", c: "220" },
 ];
 
 export function Features() {
@@ -16,9 +16,9 @@ export function Features() {
     <section id="features" className="relative z-10 px-6 py-24">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 text-center">
-          <div className="text-xs font-bold tracking-[0.3em] text-[color:var(--neon-purple)] mb-3">// CORE SYSTEMS</div>
+          <div className="text-xs font-bold tracking-[0.3em] text-[color:var(--neon-purple)] mb-3">// SYSTÈMES CENTRAUX</div>
           <h2 className="font-display text-4xl md:text-5xl font-black">
-            BUILT FOR THE <span className="text-glow-purple" style={{ color: "var(--neon-purple)" }}>NEW ECONOMY</span>
+            CONSTRUIT POUR LA <span className="text-glow-purple" style={{ color: "var(--neon-purple)" }}>NOUVELLE ÉCONOMIE</span>
           </h2>
         </div>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">

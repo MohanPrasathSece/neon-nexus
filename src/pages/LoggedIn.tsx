@@ -33,49 +33,49 @@ export default function LoggedIn() {
 
             <h1 className="text-4xl md:text-6xl font-orbitron font-bold tracking-tight mb-6 relative z-10">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">
-                ORBITX KNOWLEDGE BASE
+                BASE DE CONNAISSANCES ORBITX
               </span>
             </h1>
             <p className="text-xl text-muted-foreground font-rajdhani max-w-3xl mx-auto relative z-10">
-              Master the digital frontier with our comprehensive guide to cryptocurrency, blockchain technology, and strategic investments.
+              Maîtrisez la frontière numérique avec notre guide complet sur la cryptomonnaie, la technologie blockchain et les investissements stratégiques.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
             <div className="lg:col-span-2 space-y-8">
               
-              <MacBrowserTab id="dashboard" title="Introduction to Cryptocurrency" icon={<BookOpen className="w-4 h-4 text-neon-blue" />}>
+              <MacBrowserTab id="dashboard" title="Introduction à la Cryptomonnaie" icon={<BookOpen className="w-4 h-4 text-neon-blue" />}>
                 <div className="p-6 space-y-4">
-                  <h3 className="text-2xl font-orbitron font-semibold text-foreground">Digital Assets 101</h3>
+                  <h3 className="text-2xl font-orbitron font-semibold text-foreground">Les Actifs Numériques 101</h3>
                   <p className="text-muted-foreground font-rajdhani text-lg leading-relaxed">
-                    Cryptocurrency represents a paradigm shift in how we perceive and exchange value. Unlike traditional fiat currencies controlled by central banks, cryptocurrencies operate on decentralized networks, enabling peer-to-peer transactions globally, 24/7, without intermediaries.
+                    La cryptomonnaie représente un changement de paradigme dans la façon dont nous percevons et échangeons de la valeur. Contrairement aux monnaies fiduciaires traditionnelles contrôlées par les banques centrales, les cryptomonnaies fonctionnent sur des réseaux décentralisés, permettant des transactions de pair à pair dans le monde entier, 24h/24 et 7j/7, sans intermédiaires.
                   </p>
                   <div className="bg-background/40 p-4 rounded-lg border border-border mt-4">
                     <p className="text-sm font-rajdhani text-neon-blue">
-                      "The root problem with conventional currency is all the trust that's required to make it work. The central bank must be trusted not to debase the currency, but the history of fiat currencies is full of breaches of that trust." - Satoshi Nakamoto
+                      "Le problème fondamental de la monnaie conventionnelle est toute la confiance nécessaire pour la faire fonctionner. On doit faire confiance à la banque centrale pour ne pas avilir la monnaie, mais l'histoire des monnaies fiduciaires est pleine de violations de cette confiance." - Satoshi Nakamoto
                     </p>
                   </div>
                 </div>
               </MacBrowserTab>
 
-              <MacBrowserTab id="assets" title="Understanding Blockchain" icon={<Cpu className="w-4 h-4 text-neon-purple" />}>
+              <MacBrowserTab id="assets" title="Comprendre la Blockchain" icon={<Cpu className="w-4 h-4 text-neon-purple" />}>
                 <div className="p-6 space-y-4">
-                  <h3 className="text-2xl font-orbitron font-semibold text-foreground">The Distributed Ledger</h3>
+                  <h3 className="text-2xl font-orbitron font-semibold text-foreground">Le Registre Distribué</h3>
                   <p className="text-muted-foreground font-rajdhani text-lg leading-relaxed">
-                    At its core, a blockchain is a distributed digital ledger that records transactions across many computers so that the record cannot be altered retroactively without the alteration of all subsequent blocks and the consensus of the network. This technology ensures transparency, security, and immutability.
+                    À la base, une blockchain est un registre numérique distribué qui enregistre les transactions sur de nombreux ordinateurs afin que l'enregistrement ne puisse pas être modifié rétroactivement sans l'altération de tous les blocs ultérieurs et le consensus du réseau. Cette technologie garantit la transparence, la sécurité et l'immuabilité.
                   </p>
                 </div>
               </MacBrowserTab>
 
-              <MacBrowserTab id="trade" title="Crypto Trading Basics & Market Analysis" icon={<Activity className="w-4 h-4 text-neon-blue" />}>
+              <MacBrowserTab id="trade" title="Bases du Trading Crypto & Analyse" icon={<Activity className="w-4 h-4 text-neon-blue" />}>
                 <div className="p-6 space-y-4">
                   <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-2xl font-orbitron font-semibold text-foreground">Reading the Markets</h3>
+                    <h3 className="text-2xl font-orbitron font-semibold text-foreground">Lire les Marchés</h3>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                     <p className="text-muted-foreground font-rajdhani text-lg leading-relaxed">
-                      Successful trading requires understanding market cycles, technical analysis, and sentiment. Candlestick charts are the primary tool used by traders to analyze price movements over time. Each candle represents a specific timeframe, showing the open, high, low, and close prices.
+                      Un trading réussi nécessite de comprendre les cycles du marché, l'analyse technique et le sentiment. Les graphiques en chandeliers sont le principal outil utilisé par les traders pour analyser les mouvements de prix au fil du temps. Chaque bougie représente un laps de temps spécifique, affichant les prix d'ouverture, le plus haut, le plus bas et de clôture.
                     </p>
                     <div className="bg-background/80 border border-border rounded-xl p-4 h-64 flex items-center justify-center relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-10 pointer-events-none"></div>
@@ -85,11 +85,11 @@ export default function LoggedIn() {
                 </div>
               </MacBrowserTab>
 
-              <MacBrowserTab id="earn" title="Portfolio Diversification" icon={<PieChart className="w-4 h-4 text-neon-purple" />}>
+              <MacBrowserTab id="earn" title="Diversification du Portefeuille" icon={<PieChart className="w-4 h-4 text-neon-purple" />}>
                 <div className="p-6 space-y-4">
-                  <h3 className="text-2xl font-orbitron font-semibold text-foreground">Strategic Allocation</h3>
+                  <h3 className="text-2xl font-orbitron font-semibold text-foreground">Allocation Stratégique</h3>
                   <p className="text-muted-foreground font-rajdhani text-lg leading-relaxed">
-                    Never put all your digital assets in one protocol. A well-diversified portfolio might include established large-cap assets (like BTC and ETH) as a foundation, mid-cap utility tokens for growth, and a small percentage allocated to higher-risk experimental protocols.
+                    Ne mettez jamais tous vos actifs numériques dans un seul protocole. Un portefeuille bien diversifié pourrait inclure des actifs établis à grande capitalisation (comme BTC et ETH) comme base, des jetons utilitaires à moyenne capitalisation pour la croissance, et un petit pourcentage alloué à des protocoles expérimentaux à plus haut risque.
                   </p>
                 </div>
               </MacBrowserTab>
@@ -98,49 +98,49 @@ export default function LoggedIn() {
 
             <div className="space-y-8">
               
-              <MacBrowserTab id="history" title="Risk Management" icon={<Shield className="w-4 h-4 text-neon-blue" />}>
+              <MacBrowserTab id="history" title="Gestion des Risques" icon={<Shield className="w-4 h-4 text-neon-blue" />}>
                 <div className="p-6 space-y-4">
-                  <h3 className="text-xl font-orbitron font-semibold text-foreground mb-2">Protecting Capital</h3>
+                  <h3 className="text-xl font-orbitron font-semibold text-foreground mb-2">Protéger le Capital</h3>
                   <ul className="space-y-3 font-rajdhani text-muted-foreground">
                     <li className="flex items-start">
                       <span className="text-neon-blue mr-2 mt-1">✓</span>
-                      <span>Never invest more than you can afford to lose.</span>
+                      <span>N'investissez jamais plus que ce que vous pouvez vous permettre de perdre.</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-neon-blue mr-2 mt-1">✓</span>
-                      <span>Always use stop-loss orders to limit potential downsides.</span>
+                      <span>Utilisez toujours des ordres stop-loss pour limiter les baisses potentielles.</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-neon-blue mr-2 mt-1">✓</span>
-                      <span>Beware of high leverage, especially in volatile markets.</span>
+                      <span>Méfiez-vous d'un effet de levier élevé, surtout sur des marchés volatils.</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-neon-blue mr-2 mt-1">✓</span>
-                      <span>Keep emotional control during market swings.</span>
+                      <span>Gardez le contrôle émotionnel pendant les fluctuations du marché.</span>
                     </li>
                   </ul>
                 </div>
               </MacBrowserTab>
 
-              <MacBrowserTab id="settings" title="Security Best Practices" icon={<Shield className="w-4 h-4 text-neon-purple" />}>
+              <MacBrowserTab id="settings" title="Meilleures Pratiques de Sécurité" icon={<Shield className="w-4 h-4 text-neon-purple" />}>
                 <div className="p-6 space-y-4">
-                  <h3 className="text-xl font-orbitron font-semibold text-foreground mb-2">Operational Security</h3>
+                  <h3 className="text-xl font-orbitron font-semibold text-foreground mb-2">Sécurité Opérationnelle</h3>
                   <p className="text-muted-foreground font-rajdhani mb-4">
-                    In the crypto space, you are your own bank. This requires taking full responsibility for your security.
+                    Dans l'espace crypto, vous êtes votre propre banque. Cela nécessite de prendre l'entière responsabilité de votre sécurité.
                   </p>
                   <div className="bg-background/40 p-4 rounded border border-border border-l-4 border-l-neon-purple">
                     <p className="font-rajdhani text-sm text-foreground">
-                      <strong>Not your keys, not your coins.</strong> Store long-term holdings in cold storage hardware wallets rather than keeping them on exchanges.
+                      <strong>Pas vos clés, pas vos pièces.</strong> Stockez vos avoirs à long terme dans des portefeuilles matériels de stockage à froid plutôt que de les conserver sur des bourses.
                     </p>
                   </div>
                 </div>
               </MacBrowserTab>
               
-              <MacBrowserTab title="Market Trends & AI" icon={<TrendingUp className="w-4 h-4 text-neon-blue" />}>
+              <MacBrowserTab title="Tendances du Marché & IA" icon={<TrendingUp className="w-4 h-4 text-neon-blue" />}>
                 <div className="p-6 space-y-4">
-                  <h3 className="text-xl font-orbitron font-semibold text-foreground">Next-Gen Intelligence</h3>
+                  <h3 className="text-xl font-orbitron font-semibold text-foreground">Intelligence Nouvelle Génération</h3>
                   <p className="text-muted-foreground font-rajdhani">
-                    AI and machine learning are revolutionizing how we analyze crypto markets. Algorithms can now process vast amounts of on-chain data, social sentiment, and historical patterns to identify potential opportunities before they become obvious to the broader market.
+                    L'IA et l'apprentissage automatique révolutionnent la façon dont nous analysons les marchés crypto. Les algorithmes peuvent désormais traiter de grandes quantités de données on-chain, le sentiment social et les modèles historiques pour identifier les opportunités potentielles avant qu'elles ne deviennent évidentes pour le marché dans son ensemble.
                   </p>
                 </div>
               </MacBrowserTab>
@@ -152,11 +152,11 @@ export default function LoggedIn() {
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-5xl font-orbitron font-bold tracking-tight mb-4">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">
-                  NEED MORE INTEL?
+                  BESOIN DE PLUS D'INFOS ?
                 </span>
               </h2>
               <p className="text-muted-foreground text-lg font-rajdhani">
-                Connect with our specialists for personalized guidance on your crypto journey.
+                Connectez-vous avec nos spécialistes pour des conseils personnalisés sur votre parcours crypto.
               </p>
             </div>
             

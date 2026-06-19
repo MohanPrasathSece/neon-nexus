@@ -27,11 +27,11 @@ export default function Home() {
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-orbitron font-bold tracking-tight mb-4">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">
-                  INITIATE CONTACT
+                  INITIER LE CONTACT
                 </span>
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-rajdhani">
-                Securely transmit your inquiry to our encrypted network.
+                Transmettez votre demande en toute sécurité à notre réseau crypté.
               </p>
             </div>
             

@@ -35,8 +35,8 @@ export function MarketCards() {
     <section id="markets" className="relative z-10 px-6 py-24">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 text-center">
-          <div className="text-xs font-bold tracking-[0.3em] text-[color:var(--neon-cyan)] mb-3">// LIVE MARKETS</div>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-glow-cyan">TOP ASSETS, REAL-TIME</h2>
+          <div className="text-xs font-bold tracking-[0.3em] text-[color:var(--neon-cyan)] mb-3">// MARCHÉS EN DIRECT</div>
+          <h2 className="font-display text-4xl md:text-5xl font-black text-glow-cyan">MEILLEURS ACTIFS, TEMPS RÉEL</h2>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {markets.map((m) => {
@@ -63,7 +63,7 @@ export function MarketCards() {
                   <div className="relative -mx-2 mb-4"><MiniChart up={up} /></div>
                   <div className="relative grid grid-cols-2 gap-3 text-xs">
                     <div>
-                      <div className="text-muted-foreground">Market Cap</div>
+                      <div className="text-muted-foreground">Capitalisation</div>
                       <div className="font-semibold">${m.mcap}</div>
                     </div>
                     <div>
@@ -72,7 +72,7 @@ export function MarketCards() {
                     </div>
                   </div>
                   <button onClick={() => window.dispatchEvent(new CustomEvent("open-signup"))} className="relative mt-5 w-full py-2.5 rounded-lg font-display font-bold text-sm border border-[color:var(--neon-cyan)]/40 text-[color:var(--neon-cyan)] hover:bg-[color:var(--neon-cyan)]/10 transition-all">
-                    TRADE NOW
+                    NÉGOCIER MAINTENANT
                   </button>
                 </div>
               </TiltCard>

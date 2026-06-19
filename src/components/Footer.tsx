@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 export function Footer() {
   const cols = [
-    { t: "Product", l: [{ name: "Markets", path: "/#markets" }, { name: "Trading", path: "/#markets" }, { name: "Staking", path: "/#investments" }, { name: "Wallets", path: "/#features" }, { name: "API", path: "/#features" }] },
-    { t: "Legal", l: [{ name: "Privacy Policy", path: "/privacy-policy" }, { name: "Terms & Conditions", path: "/terms-and-conditions" }] },
+    { t: "Produit", l: [{ name: "Marchés", path: "/#markets" }, { name: "Trading", path: "/#markets" }, { name: "Staking", path: "/#investments" }, { name: "Portefeuilles", path: "/#features" }, { name: "API", path: "/#features" }] },
+    { t: "Légal", l: [{ name: "Politique de Confidentialité", path: "/privacy-policy" }, { name: "Termes et Conditions", path: "/terms-and-conditions" }] },
   ];
   return (
     <footer className="relative z-10 mt-24 border-t border-[color:var(--neon-cyan)]/20 overflow-hidden">
@@ -19,7 +19,7 @@ export function Footer() {
               <span className="font-display font-black text-lg tracking-widest text-glow-cyan">ORBITX FINANCE</span>
             </div>
             <p className="text-sm text-muted-foreground max-w-sm mb-6">
-              The cyberpunk command center for digital wealth. Trade, stake and build the new economy.
+              Le centre de commande cyberpunk pour la richesse numérique. Négociez, stakez et construisez la nouvelle économie.
             </p>
           </div>
           {cols.map((c) => (
@@ -40,7 +40,7 @@ export function Footer() {
           ))}
         </div>
         <div className="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-[color:var(--neon-cyan)]/15">
-          <div className="text-xs text-muted-foreground">© 2026 ORBITX FINANCE Protocol. All systems operational.</div>
+          <div className="text-xs text-muted-foreground">© 2026 Protocole ORBITX FINANCE. Tous les systèmes sont opérationnels.</div>
 
         </div>
       </div>

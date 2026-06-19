@@ -21,7 +21,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
     try {
       if (!email) {
-        toast.error("Please enter your email address.");
+        toast.error("Veuillez entrer votre adresse e-mail.");
         setLoading(false);
         return;
       }
@@ -34,16 +34,16 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.error || "User not found or authentication failed.");
+        throw new Error(errorData?.error || "Utilisateur non trouvé ou échec de l'authentification.");
       }
 
-      toast.success("Authentication successful. Redirecting...");
+      toast.success("Authentification réussie. Redirection...");
       setEmail("");
       onClose();
       navigate("/logged-in");
     } catch (error: any) {
       console.error(error);
-      toast.error(error.message || "Authentication failed. Please try again.");
+      toast.error(error.message || "Échec de l'authentification. Veuillez réessayer.");
     } finally {
       setLoading(false);
     }
@@ -85,15 +85,15 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
                   <div className="w-8 h-8 rounded-full neon-gradient animate-pulse-glow" />
                 </div>
                 <h2 className="text-2xl font-display font-black tracking-widest text-glow-cyan uppercase">
-                  Initialize
+                  Initialiser
                 </h2>
-                <p className="text-muted-foreground font-sans text-sm mt-2">Access the command center.</p>
+                <p className="text-muted-foreground font-sans text-sm mt-2">Accéder au centre de commande.</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <label htmlFor="login-email" className="text-xs uppercase tracking-widest font-display text-[color:var(--neon-cyan)]">
-                    Network ID (Email)
+                    ID Réseau (E-mail)
                   </label>
                   <input 
                     id="login-email" 
@@ -114,7 +114,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 >
                   <span className="absolute inset-0 neon-gradient opacity-90 group-hover:opacity-100 transition-opacity" />
                   <span className="relative flex items-center gap-2 text-background font-display font-bold tracking-widest text-sm uppercase">
-                    {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Uplinking...</> : "Enter ORBITX FINANCE"}
+                    {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Connexion en cours...</> : "Entrer dans ORBITX FINANCE"}
                   </span>
                 </button>
               </form>

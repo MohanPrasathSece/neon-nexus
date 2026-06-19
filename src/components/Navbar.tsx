@@ -5,8 +5,20 @@ import { LoginModal } from "./LoginModal";
 import { SignupModal } from "./SignupModal";
 import { Menu, X, LogOut } from "lucide-react";
 
-const publicLinks = ["Markets", "Investments", "Features", "Contact"];
-const loggedInLinks = ["Dashboard", "Assets", "Trade", "Earn", "History", "Settings"];
+const publicLinks = [
+  { name: "Marchés", id: "markets" },
+  { name: "Investissements", id: "investments" },
+  { name: "Fonctionnalités", id: "features" },
+  { name: "Contact", id: "contact" }
+];
+const loggedInLinks = [
+  { name: "Tableau de Bord", id: "dashboard" },
+  { name: "Actifs", id: "assets" },
+  { name: "Négocier", id: "trade" },
+  { name: "Gagner", id: "earn" },
+  { name: "Historique", id: "history" },
+  { name: "Paramètres", id: "settings" }
+];
 
 export function Navbar() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -65,11 +77,11 @@ export function Navbar() {
         <nav className="hidden md:flex items-center gap-1">
           {links.map((l) => (
             <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
+              key={l.id}
+              href={`#${l.id}`}
               className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
             >
-              {l}
+              {l.name}
               <span className="absolute inset-x-4 -bottom-0.5 h-px scale-x-0 group-hover:scale-x-100 transition-transform origin-left" style={{ background: "var(--neon-cyan)", boxShadow: "0 0 8px var(--neon-cyan)" }} />
             </a>
           ))}
@@ -80,17 +92,17 @@ export function Navbar() {
           {isLoggedInPage ? (
             <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg border border-destructive/40 text-destructive hover:bg-destructive/10 transition-all">
               <LogOut className="w-4 h-4" />
-              Logout
+              Déconnexion
             </button>
           ) : (
             <>
               <button onClick={() => setIsLoginOpen(true)} className="px-4 py-2 text-sm font-semibold rounded-lg border border-[color:var(--neon-cyan)]/40 text-[color:var(--neon-cyan)] hover:bg-[color:var(--neon-cyan)]/10 transition-all">
-                Login
+                Connexion
               </button>
               <button onClick={() => setIsSignupOpen(true)} className="relative px-5 py-2 text-sm font-bold rounded-lg overflow-hidden group">
                 <span className="absolute inset-0 neon-gradient" />
                 <span className="absolute inset-[1.5px] rounded-md bg-background/40 backdrop-blur" />
-                <span className="relative text-foreground">Sign Up</span>
+                <span className="relative text-foreground">S'inscrire</span>
               </button>
             </>
           )}
@@ -120,12 +132,12 @@ export function Navbar() {
             <nav className="flex flex-col gap-4 mb-8">
               {links.map((l) => (
                 <a
-                  key={l}
-                  href={`#${l.toLowerCase()}`}
+                  key={l.id}
+                  href={`#${l.id}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-2xl font-display font-bold tracking-wider text-muted-foreground hover:text-[color:var(--neon-cyan)] transition-colors"
                 >
-                  {l}
+                  {l.name}
                 </a>
               ))}
             </nav>
@@ -134,16 +146,16 @@ export function Navbar() {
               {isLoggedInPage ? (
                 <button onClick={handleLogout} className="flex justify-center items-center gap-2 w-full px-6 py-4 rounded-xl font-bold font-display tracking-wider text-sm border border-destructive/50 text-destructive hover:bg-destructive/10 transition-all">
                   <LogOut className="w-5 h-5" />
-                  LOGOUT
+                  DÉCONNEXION
                 </button>
               ) : (
                 <>
                   <button onClick={() => { setIsMobileMenuOpen(false); setIsLoginOpen(true); }} className="w-full px-6 py-4 rounded-xl font-bold font-display tracking-wider text-sm border border-[color:var(--neon-cyan)]/50 text-[color:var(--neon-cyan)] hover:bg-[color:var(--neon-cyan)]/10 transition-all">
-                    LOGIN
+                    CONNEXION
                   </button>
                   <button onClick={() => { setIsMobileMenuOpen(false); setIsSignupOpen(true); }} className="relative w-full px-6 py-4 rounded-xl font-bold font-display tracking-wider text-sm overflow-hidden glow-cyan">
                     <span className="absolute inset-0 neon-gradient" />
-                    <span className="relative text-background">SIGN UP</span>
+                    <span className="relative text-background">S'INSCRIRE</span>
                   </button>
                 </>
               )}

@@ -26,7 +26,7 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
     try {
       // Validate
       if (!formData.name || !formData.email || !formData.phone) {
-        toast.error("Please fill in all required fields.");
+        toast.error("Veuillez remplir tous les champs obligatoires.");
         setLoading(false);
         return;
       }
@@ -39,20 +39,20 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          message: formData.message || "No message provided",
+          message: formData.message || "Aucun message fourni",
           source: `${formId}-form`
         }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to submit inquiry");
+        throw new Error("Échec de la soumission de la demande");
       }
 
-      toast.success("Enquiry received successfully! Our team will contact you shortly.");
+      toast.success("Demande reçue avec succès ! Notre équipe vous contactera sous peu.");
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
       console.error(error);
-      toast.error("An error occurred while submitting. Please try again.");
+      toast.error("Une erreur s'est produite lors de la soumission. Veuillez réessayer.");
     } finally {
       setLoading(false);
     }
@@ -63,14 +63,14 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
           <label htmlFor={`${formId}-name`} className="text-sm font-medium text-foreground">
-            Full Name *
+            Nom Complet *
           </label>
           <Input
             id={`${formId}-name`}
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="John Doe"
+            placeholder="Jean Dupont"
             required
             className="bg-background/50 border-input font-rajdhani"
           />
@@ -79,7 +79,7 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label htmlFor={`${formId}-email`} className="text-sm font-medium text-foreground">
-              Email Address *
+              Adresse E-mail *
             </label>
             <Input
               id={`${formId}-email`}
@@ -87,7 +87,7 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
               type="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="john@example.com"
+              placeholder="jean@exemple.com"
               required
               className="bg-background/50 border-input font-rajdhani"
             />
@@ -95,7 +95,7 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
 
           <div className="space-y-2">
             <label htmlFor={`${formId}-phone`} className="text-sm font-medium text-foreground">
-              Phone Number *
+              Numéro de Téléphone *
             </label>
             <Input
               id={`${formId}-phone`}
@@ -103,7 +103,7 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
               type="tel"
               value={formData.phone}
               onChange={handleChange}
-              placeholder="+1 (555) 000-0000"
+              placeholder="+33 6 12 34 56 78"
               required
               className="bg-background/50 border-input font-rajdhani"
             />
@@ -112,14 +112,14 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
 
         <div className="space-y-2">
           <label htmlFor={`${formId}-message`} className="text-sm font-medium text-foreground">
-            Message (Optional)
+            Message (Facultatif)
           </label>
           <Textarea
             id={`${formId}-message`}
             name="message"
             value={formData.message}
             onChange={handleChange}
-            placeholder="How can we assist you?"
+            placeholder="Comment pouvons-nous vous aider ?"
             className="min-h-[120px] bg-background/50 border-input font-rajdhani"
           />
         </div>
@@ -132,10 +132,10 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
           {loading ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              TRANSMITTING...
+              TRANSMISSION...
             </>
           ) : (
-            "SUBMIT INQUIRY"
+            "SOUMETTRE LA DEMANDE"
           )}
         </Button>
       </form>

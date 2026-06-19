@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const headline = "THE FUTURE OF CRYPTO INVESTING";
+const headline = "L'AVENIR DE L'INVESTISSEMENT CRYPTO";
 
 export function Hero() {
   return (
@@ -45,10 +45,10 @@ export function Hero() {
           className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full glass-panel text-xs font-semibold tracking-widest"
         >
           <span className="h-2 w-2 rounded-full animate-aurora" style={{ background: "var(--neon-cyan)", boxShadow: "0 0 12px var(--neon-cyan)" }} />
-          LIVE · 1.2M+ INVESTORS ONLINE
+          EN DIRECT · PLUS DE 1,2M D'INVESTISSEURS EN LIGNE
         </motion.div>
 
-        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] mb-6">
+        <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-black leading-[0.95] mb-6">
           {headline.split(" ").map((word, wi) => (
             <span key={wi} className="inline-block mr-3">
               {word.split("").map((c, ci) => (
@@ -72,7 +72,7 @@ export function Hero() {
             className="block mt-2 bg-clip-text text-transparent"
             style={{ backgroundImage: "linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-indigo))" }}
           >
-            STARTS HERE
+            COMMENCE ICI
           </motion.span>
         </h1>
 
@@ -82,8 +82,8 @@ export function Hero() {
           transition={{ delay: 1.6 }}
           className="max-w-2xl mx-auto text-base md:text-lg text-muted-foreground mb-10"
         >
-          Trade, stake, and grow your digital wealth inside a next-generation command center.
-          Powered by AI signals, military-grade security, and real-time market intelligence.
+          Négociez, stakez et faites croître votre richesse numérique dans un centre de commande de nouvelle génération.
+          Propulsé par des signaux d'IA, une sécurité de niveau militaire et des renseignements de marché en temps réel.
         </motion.p>
 
         <motion.div
@@ -95,10 +95,10 @@ export function Hero() {
           <button onClick={() => window.dispatchEvent(new CustomEvent("open-signup"))} className="group relative px-8 py-4 rounded-xl font-bold font-display tracking-wider text-sm overflow-hidden glow-cyan transition-transform hover:scale-105">
             <span className="absolute inset-0 neon-gradient" />
             <span className="absolute inset-0 animate-shimmer" />
-            <span className="relative text-background">START INVESTING →</span>
+            <span className="relative text-background">COMMENCER À INVESTIR →</span>
           </button>
           <button onClick={() => window.dispatchEvent(new CustomEvent("open-login"))} className="group relative px-8 py-4 rounded-xl font-bold font-display tracking-wider text-sm border border-[color:var(--neon-cyan)]/50 text-[color:var(--neon-cyan)] hover:bg-[color:var(--neon-cyan)]/10 transition-all hover:glow-cyan">
-            <span className="relative">EXPLORE MARKET</span>
+            <span className="relative">EXPLORER LE MARCHÉ</span>
           </button>
         </motion.div>
 
@@ -109,10 +109,10 @@ export function Hero() {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
         >
           {[
-            { v: "$84B+", l: "Volume Traded" },
-            { v: "1.2M+", l: "Active Users" },
-            { v: "350+", l: "Assets Listed" },
-            { v: "99.99%", l: "Uptime SLA" },
+            { v: "$84B+", l: "Volume Échangé" },
+            { v: "1.2M+", l: "Utilisateurs Actifs" },
+            { v: "350+", l: "Actifs Listés" },
+            { v: "99.99%", l: "SLA de Disponibilité" },
           ].map((s) => (
             <div key={s.l} className="text-center">
               <div className="font-display text-2xl md:text-3xl font-black text-glow-cyan" style={{ color: "var(--neon-cyan)" }}>{s.v}</div>
