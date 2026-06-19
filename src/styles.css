@@ -1,5 +1,4 @@
-@import "tailwindcss" source(none);
-@source "../src";
+@import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -151,7 +150,6 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    cursor: none;
     overflow-x: hidden;
   }
 
@@ -262,7 +260,4 @@
   animation: grid-move 8s linear infinite;
 }
 
-/* Hide default cursor on all interactive elements */
-a, button, input, textarea, select, [role="button"] {
-  cursor: none;
-}
+

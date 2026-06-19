@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 export function Footer() {
   const cols = [
-    { t: "Product", l: ["Markets", "Trading", "Staking", "Wallets", "API"] },
-    { t: "Company", l: ["About", "Careers", "Press", "Security", "Legal"] },
-    { t: "Resources", l: ["Docs", "Blog", "Help Center", "Status", "Community"] },
+    { t: "Product", l: [{ name: "Markets", path: "/" }, { name: "Trading", path: "/" }, { name: "Staking", path: "/" }, { name: "Wallets", path: "/" }, { name: "API", path: "/" }] },
+    { t: "Company", l: [{ name: "About", path: "/" }, { name: "Careers", path: "/" }, { name: "Privacy Policy", path: "/privacy-policy" }, { name: "Terms & Conditions", path: "/terms-and-conditions" }, { name: "Legal", path: "/" }] },
+    { t: "Resources", l: [{ name: "Docs", path: "/" }, { name: "Blog", path: "/" }, { name: "Help Center", path: "/" }, { name: "Status", path: "/" }, { name: "Community", path: "/" }] },
   ];
   return (
     <footer className="relative z-10 mt-24 border-t border-[color:var(--neon-cyan)]/20 overflow-hidden">
@@ -36,7 +38,7 @@ export function Footer() {
               <div className="font-display font-bold mb-4 text-sm uppercase tracking-widest text-[color:var(--neon-cyan)]">{c.t}</div>
               <ul className="space-y-2">
                 {c.l.map((l) => (
-                  <li key={l}><a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{l}</a></li>
+                  <li key={l.name}><Link to={l.path} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{l.name}</Link></li>
                 ))}
               </ul>
             </div>
