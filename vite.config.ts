@@ -12,6 +12,48 @@ const apiPlugin = () => ({
     server.middlewares.use(async (req: any, res: any, next: any) => {
       const env = loadEnv(server.config.mode, process.cwd(), "");
       const token = env.BLOB_READ_WRITE_TOKEN;
+      const crmToken = env.CRM_API_TOKEN;
+      const crmUrl = env.CRM_API_URL;
+
+      if (req.url === "/api/crm" && req.method === "POST") {
+        try {
+          if (!crmToken || !crmUrl) {
+            res.statusCode = 500;
+            return res.end(JSON.stringify({ error: "Missing CRM credentials" }));
+          }
+
+          const payload = {
+            first_name: req.body.firstName || 'Unknown',
+            last_name: req.body.lastName || 'Unknown',
+            email: req.body.email,
+            phone: req.body.phone,
+            description: req.body.notes || '',
+            country_name: 'us',
+            custom_fields: {
+              Source_ID: req.body.source || 'website'
+            }
+          };
+
+          const response = await fetch(crmUrl, {
+            method: "POST",
+            headers: { 
+              "Content-Type": "application/json",
+              "authorization": crmToken
+            },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await response.json().catch(() => ({}));
+          res.statusCode = response.status;
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify(data));
+        } catch (error: any) {
+          console.error("CRM Proxy Error:", error);
+          res.statusCode = 500;
+          res.end(JSON.stringify({ error: error.message }));
+        }
+        return;
+      }
 
       if (req.url === "/api/auth/signup" && req.method === "POST") {
         try {

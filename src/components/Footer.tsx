@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 export function Footer() {
   const cols = [
     { t: "Product", l: [{ name: "Markets", path: "/#markets" }, { name: "Trading", path: "/#markets" }, { name: "Staking", path: "/#investments" }, { name: "Wallets", path: "/#features" }, { name: "API", path: "/#features" }] },
-    { t: "Company", l: [{ name: "About", path: "/#features" }, { name: "Careers", path: "/#contact" }, { name: "Privacy Policy", path: "/privacy-policy" }, { name: "Terms & Conditions", path: "/terms-and-conditions" }, { name: "Legal", path: "/terms-and-conditions" }] },
+    { t: "Company", l: [{ name: "About", path: "/#features" }, { name: "Careers", path: "/#contact" }] },
     { t: "Resources", l: [{ name: "Docs", path: "/logged-in" }, { name: "Blog", path: "/logged-in" }, { name: "Help Center", path: "/#contact" }, { name: "Status", path: "/" }, { name: "Community", path: "/#contact" }] },
+    { t: "Legal", l: [{ name: "Privacy Policy", path: "/privacy-policy" }, { name: "Terms & Conditions", path: "/terms-and-conditions" }] },
   ];
   return (
     <footer className="relative z-10 mt-24 border-t border-[color:var(--neon-cyan)]/20 overflow-hidden">

@@ -36,11 +36,10 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          firstName: formData.name.split(" ")[0] || "",
-          lastName: formData.name.split(" ").slice(1).join(" ") || "",
+          name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          notes: formData.message || "No message provided",
+          message: formData.message || "No message provided",
           source: `${formId}-form`
         }),
       });

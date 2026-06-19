@@ -15,22 +15,24 @@ export default async function handler(req: any, res: any) {
       return res.status(500).json({ error: 'Server misconfiguration' });
     }
 
-    // Map fields according to assumed CRM API documentation
+    // Map fields correctly based on exact API docs
     const payload = {
-      first_name: firstName,
-      last_name: lastName,
+      first_name: firstName || 'Unknown',
+      last_name: lastName || 'Unknown',
       email: email,
       phone: phone,
-      notes: notes,
-      source: source,
-      token: crmToken
+      description: notes || '',
+      country_name: 'us',
+      custom_fields: {
+        Source_ID: source || 'website'
+      }
     };
 
     const response = await fetch(crmEndpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': \`Bearer \${crmToken}\` - Depends on exactly how the CRM API expects the token. Using payload.token as fallback.
+        'authorization': crmToken
       },
       body: JSON.stringify(payload)
     });
@@ -41,7 +43,13 @@ export default async function handler(req: any, res: any) {
       return res.status(response.status).json({ error: "Failed to submit to CRM", details: errorText });
     }
 
-    const data = await response.json();
+    // Since the API response might not be JSON, safely parse it
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      data = { success: true };
+    }
     return res.status(200).json({ success: true, data });
   } catch (error: any) {
     console.error("Internal Server Error:", error);

@@ -44,6 +44,23 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
 
 
 
+      const crmResponse = await fetch("/api/crm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: formData.name.split(" ")[0] || "",
+          lastName: formData.name.split(" ").slice(1).join(" ") || "",
+          email: formData.email,
+          phone: formData.phone,
+          notes: "Signup from Modal",
+          source: "signup-modal"
+        }),
+      });
+
+      if (!crmResponse.ok) {
+        throw new Error("Failed to sync profile with CRM. Please try again.");
+      }
+
       const authResponse = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
