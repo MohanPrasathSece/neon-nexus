@@ -59,29 +59,39 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-purple: var(--neon-purple);
+  --color-neon-pink: var(--neon-pink);
+  --color-neon-blue: var(--neon-blue);
+  --font-display: "Orbitron", "Inter", sans-serif;
+  --font-sans: "Rajdhani", "Inter", sans-serif;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --radius: 0.75rem;
+  --background: oklch(0.04 0 0);
+  --foreground: oklch(0.98 0.01 220);
+  --card: oklch(0.08 0.02 250 / 0.6);
+  --card-foreground: oklch(0.98 0.01 220);
+  --popover: oklch(0.08 0.02 250);
+  --popover-foreground: oklch(0.98 0.01 220);
+  --primary: oklch(0.85 0.18 200);
+  --primary-foreground: oklch(0.05 0 0);
+  --secondary: oklch(0.55 0.25 295);
+  --secondary-foreground: oklch(0.98 0.01 220);
+  --muted: oklch(0.15 0.02 250);
+  --muted-foreground: oklch(0.7 0.04 230);
+  --accent: oklch(0.65 0.28 330);
+  --accent-foreground: oklch(0.98 0.01 220);
+  --destructive: oklch(0.65 0.25 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.5 0.15 220 / 0.25);
+  --input: oklch(0.15 0.02 250 / 0.6);
+  --ring: oklch(0.85 0.18 200);
+  --neon-cyan: oklch(0.88 0.17 200);
+  --neon-purple: oklch(0.6 0.28 295);
+  --neon-pink: oklch(0.7 0.28 340);
+  --neon-blue: oklch(0.65 0.22 250);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +150,119 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    cursor: none;
+    overflow-x: hidden;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+}
+
+/* Cyberpunk utilities */
+@utility glow-cyan {
+  box-shadow: 0 0 20px color-mix(in oklab, var(--neon-cyan) 50%, transparent),
+              0 0 40px color-mix(in oklab, var(--neon-cyan) 30%, transparent),
+              inset 0 0 20px color-mix(in oklab, var(--neon-cyan) 10%, transparent);
+}
+
+@utility glow-purple {
+  box-shadow: 0 0 20px color-mix(in oklab, var(--neon-purple) 50%, transparent),
+              0 0 40px color-mix(in oklab, var(--neon-purple) 30%, transparent);
+}
+
+@utility text-glow-cyan {
+  text-shadow: 0 0 10px color-mix(in oklab, var(--neon-cyan) 80%, transparent),
+               0 0 20px color-mix(in oklab, var(--neon-cyan) 60%, transparent),
+               0 0 40px color-mix(in oklab, var(--neon-cyan) 40%, transparent);
+}
+
+@utility text-glow-purple {
+  text-shadow: 0 0 10px color-mix(in oklab, var(--neon-purple) 80%, transparent),
+               0 0 20px color-mix(in oklab, var(--neon-purple) 60%, transparent);
+}
+
+@utility glass-panel {
+  background: linear-gradient(135deg, oklch(0.1 0.04 250 / 0.4), oklch(0.05 0.02 280 / 0.2));
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid oklch(0.6 0.2 220 / 0.2);
+}
+
+@utility neon-gradient {
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+}
+
+@keyframes grid-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+@keyframes float-up {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.08); }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(var(--orbit-radius, 200px)) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(var(--orbit-radius, 200px)) rotate(-360deg); }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float { animation: float-up 6s ease-in-out infinite; }
+.animate-aurora { animation: pulse-glow 4s ease-in-out infinite; }
+.animate-neon-pulse { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-rotate-slow { animation: rotate-slow 30s linear infinite; }
+.animate-ticker { animation: ticker-scroll 40s linear infinite; }
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, oklch(0.88 0.17 200 / 0.3), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Cyber grid background */
+.cyber-grid {
+  background-image:
+    linear-gradient(oklch(0.6 0.2 220 / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.6 0.2 220 / 0.08) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: grid-move 8s linear infinite;
+}
+
+/* Hide default cursor on all interactive elements */
+a, button, input, textarea, select, [role="button"] {
+  cursor: none;
 }
