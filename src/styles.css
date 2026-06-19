@@ -60,7 +60,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --color-neon-cyan: var(--neon-cyan);
   --color-neon-purple: var(--neon-purple);
-  --color-neon-pink: var(--neon-pink);
+  --color-neon-indigo: var(--neon-indigo);
   --color-neon-blue: var(--neon-blue);
   --font-display: "Orbitron", "Inter", sans-serif;
   --font-sans: "Rajdhani", "Inter", sans-serif;
@@ -70,7 +70,7 @@
   --radius: 0.75rem;
   --background: oklch(0.04 0 0);
   --foreground: oklch(0.98 0.01 220);
-  --card: oklch(0.08 0.02 250 / 0.6);
+  --card: oklch(0.08 0.02 250 / 0.85);
   --card-foreground: oklch(0.98 0.01 220);
   --popover: oklch(0.08 0.02 250);
   --popover-foreground: oklch(0.98 0.01 220);
@@ -88,8 +88,8 @@
   --input: oklch(0.15 0.02 250 / 0.6);
   --ring: oklch(0.85 0.18 200);
   --neon-cyan: oklch(0.88 0.17 200);
-  --neon-purple: oklch(0.6 0.28 295);
-  --neon-pink: oklch(0.7 0.28 340);
+  --neon-purple: oklch(0.6 0.25 275);
+  --neon-indigo: oklch(0.65 0.2 260);
   --neon-blue: oklch(0.65 0.22 250);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -183,13 +183,13 @@
 }
 
 @utility glass-panel {
-  background: linear-gradient(135deg, oklch(0.1 0.04 250 / 0.4), oklch(0.05 0.02 280 / 0.2));
-  backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid oklch(0.6 0.2 220 / 0.2);
+  background: linear-gradient(135deg, oklch(0.12 0.04 250 / 0.8), oklch(0.08 0.02 280 / 0.7));
+  backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid oklch(0.6 0.2 220 / 0.3);
 }
 
 @utility neon-gradient {
-  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-indigo));
 }
 
 @keyframes grid-move {
@@ -259,8 +259,6 @@
   background-size: 50px 50px;
   animation: grid-move 8s linear infinite;
 }
-
-
 
 a, button, [role='button'], input[type='submit'] {
   cursor: pointer;

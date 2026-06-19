@@ -18,9 +18,9 @@ export function Calculator() {
     <section id="investments" className="relative z-10 px-6 py-24">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12 text-center">
-          <div className="text-xs font-bold tracking-[0.3em] text-[color:var(--neon-pink)] mb-3">// PROFIT SIMULATOR</div>
+          <div className="text-xs font-bold tracking-[0.3em] text-[color:var(--neon-indigo)] mb-3">// PROFIT SIMULATOR</div>
           <h2 className="font-display text-4xl md:text-5xl font-black">
-            CALCULATE YOUR <span style={{ color: "var(--neon-pink)" }} className="text-glow-purple">FUTURE</span>
+            CALCULATE YOUR <span style={{ color: "var(--neon-indigo)" }} className="text-glow-purple">FUTURE</span>
           </h2>
         </div>
         <div className="rounded-3xl glass-panel p-6 md:p-10 grid gap-10 lg:grid-cols-2">
@@ -52,7 +52,7 @@ export function Calculator() {
           </div>
           <div className="flex flex-col">
             <div className="text-xs text-muted-foreground uppercase tracking-widest">Projected Value</div>
-            <div className="font-display text-5xl md:text-6xl font-black my-3" style={{ background: "linear-gradient(90deg, var(--neon-cyan), var(--neon-pink))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            <div className="font-display text-5xl md:text-6xl font-black my-3" style={{ background: "linear-gradient(90deg, var(--neon-cyan), var(--neon-indigo))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               ${Math.round(final).toLocaleString()}
             </div>
             <div className="text-emerald-400 font-semibold mb-4">+ ${Math.round(final - amount).toLocaleString()} profit</div>

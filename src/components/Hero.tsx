@@ -70,7 +70,7 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.4 }}
             className="block mt-2 bg-clip-text text-transparent"
-            style={{ backgroundImage: "linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink))" }}
+            style={{ backgroundImage: "linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-indigo))" }}
           >
             STARTS HERE
           </motion.span>

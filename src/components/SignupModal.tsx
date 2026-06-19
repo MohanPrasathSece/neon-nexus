@@ -118,7 +118,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
               
               <div className="text-center mb-8 pt-4">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[color:var(--neon-purple)]/10 mb-4 glow-purple">
-                  <div className="w-8 h-8 rounded-full neon-gradient animate-pulse-glow" style={{ background: "linear-gradient(135deg, var(--neon-purple), var(--neon-pink))" }} />
+                  <div className="w-8 h-8 rounded-full neon-gradient animate-pulse-glow" style={{ background: "linear-gradient(135deg, var(--neon-purple), var(--neon-indigo))" }} />
                 </div>
                 <h2 className="text-2xl font-display font-black tracking-widest text-glow-purple uppercase">
                   Register
@@ -192,7 +192,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                   disabled={loading} 
                   className="w-full relative px-6 py-4 rounded-lg overflow-hidden group flex items-center justify-center mt-6"
                 >
-                  <span className="absolute inset-0 bg-gradient-to-r from-[color:var(--neon-purple)] to-[color:var(--neon-pink)] opacity-90 group-hover:opacity-100 transition-opacity" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-[color:var(--neon-purple)] to-[color:var(--neon-indigo)] opacity-90 group-hover:opacity-100 transition-opacity" />
                   <span className="relative flex items-center gap-2 text-background font-display font-bold tracking-widest text-sm uppercase">
                     {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Uploading...</> : "Create Profile"}
                   </span>
