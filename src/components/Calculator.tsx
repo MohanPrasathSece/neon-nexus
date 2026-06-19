@@ -69,7 +69,7 @@ export function Calculator() {
                 </AreaChart>
               </ResponsiveContainer>
             </div>
-            <button className="mt-6 relative px-8 py-4 rounded-xl font-bold font-display tracking-wider text-sm overflow-hidden glow-cyan">
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-signup"))} className="mt-6 relative px-8 py-4 rounded-xl font-bold font-display tracking-wider text-sm overflow-hidden glow-cyan">
               <span className="absolute inset-0 neon-gradient" />
               <span className="relative text-background">START THIS PLAN →</span>
             </button>

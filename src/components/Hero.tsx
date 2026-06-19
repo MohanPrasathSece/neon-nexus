@@ -92,12 +92,12 @@ export function Hero() {
           transition={{ delay: 1.8 }}
           className="flex flex-wrap items-center justify-center gap-4"
         >
-          <button className="group relative px-8 py-4 rounded-xl font-bold font-display tracking-wider text-sm overflow-hidden glow-cyan transition-transform hover:scale-105">
+          <button onClick={() => window.dispatchEvent(new CustomEvent("open-signup"))} className="group relative px-8 py-4 rounded-xl font-bold font-display tracking-wider text-sm overflow-hidden glow-cyan transition-transform hover:scale-105">
             <span className="absolute inset-0 neon-gradient" />
             <span className="absolute inset-0 animate-shimmer" />
             <span className="relative text-background">START INVESTING →</span>
           </button>
-          <button className="group relative px-8 py-4 rounded-xl font-bold font-display tracking-wider text-sm border border-[color:var(--neon-cyan)]/50 text-[color:var(--neon-cyan)] hover:bg-[color:var(--neon-cyan)]/10 transition-all hover:glow-cyan">
+          <button onClick={() => window.dispatchEvent(new CustomEvent("open-login"))} className="group relative px-8 py-4 rounded-xl font-bold font-display tracking-wider text-sm border border-[color:var(--neon-cyan)]/50 text-[color:var(--neon-cyan)] hover:bg-[color:var(--neon-cyan)]/10 transition-all hover:glow-cyan">
             <span className="relative">EXPLORE MARKET</span>
           </button>
         </motion.div>

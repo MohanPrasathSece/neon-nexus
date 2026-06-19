@@ -12,13 +12,31 @@ export default function LoggedIn() {
       <div className="relative pt-32 pb-16 min-h-screen">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           
-          <div className="mb-16 text-center">
-            <h1 className="text-4xl md:text-6xl font-orbitron font-bold tracking-tight mb-6">
+          <div className="mb-16 text-center relative">
+            {/* Orbiting Coins Background */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-40">
+              <div className="relative h-[400px] w-[400px] max-w-[90vw]">
+                <div className="absolute inset-1/4 rounded-full opacity-30 blur-xl" style={{ background: "radial-gradient(circle, var(--neon-cyan), transparent 70%)" }} />
+                {["₿", "Ξ", "◎", "✕"].map((sym, i) => (
+                  <div
+                    key={sym}
+                    className="absolute top-1/2 left-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2"
+                    style={{ animation: `orbit ${10 + i * 2}s linear infinite`, ["--orbit-radius" as string]: `${180 + i * 20}px` }}
+                  >
+                    <div className="h-full w-full rounded-full glass-panel flex items-center justify-center font-display font-black text-sm text-glow-cyan border border-[color:var(--neon-cyan)]/30 bg-[color:var(--neon-cyan)]/5">
+                      {sym}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <h1 className="text-4xl md:text-6xl font-orbitron font-bold tracking-tight mb-6 relative z-10">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">
-                NEXUS KNOWLEDGE BASE
+                ORBITX KNOWLEDGE BASE
               </span>
             </h1>
-            <p className="text-xl text-muted-foreground font-rajdhani max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground font-rajdhani max-w-3xl mx-auto relative z-10">
               Master the digital frontier with our comprehensive guide to cryptocurrency, blockchain technology, and strategic investments.
             </p>
           </div>
@@ -26,7 +44,7 @@ export default function LoggedIn() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
             <div className="lg:col-span-2 space-y-8">
               
-              <MacBrowserTab title="Introduction to Cryptocurrency" icon={<BookOpen className="w-4 h-4 text-neon-blue" />}>
+              <MacBrowserTab id="dashboard" title="Introduction to Cryptocurrency" icon={<BookOpen className="w-4 h-4 text-neon-blue" />}>
                 <div className="p-6 space-y-4">
                   <h3 className="text-2xl font-orbitron font-semibold text-foreground">Digital Assets 101</h3>
                   <p className="text-muted-foreground font-rajdhani text-lg leading-relaxed">
@@ -40,7 +58,7 @@ export default function LoggedIn() {
                 </div>
               </MacBrowserTab>
 
-              <MacBrowserTab title="Understanding Blockchain" icon={<Cpu className="w-4 h-4 text-neon-purple" />}>
+              <MacBrowserTab id="assets" title="Understanding Blockchain" icon={<Cpu className="w-4 h-4 text-neon-purple" />}>
                 <div className="p-6 space-y-4">
                   <h3 className="text-2xl font-orbitron font-semibold text-foreground">The Distributed Ledger</h3>
                   <p className="text-muted-foreground font-rajdhani text-lg leading-relaxed">
@@ -49,7 +67,7 @@ export default function LoggedIn() {
                 </div>
               </MacBrowserTab>
 
-              <MacBrowserTab title="Crypto Trading Basics & Market Analysis" icon={<Activity className="w-4 h-4 text-neon-blue" />}>
+              <MacBrowserTab id="trade" title="Crypto Trading Basics & Market Analysis" icon={<Activity className="w-4 h-4 text-neon-blue" />}>
                 <div className="p-6 space-y-4">
                   <div className="flex justify-between items-center mb-6">
                     <h3 className="text-2xl font-orbitron font-semibold text-foreground">Reading the Markets</h3>
@@ -67,7 +85,7 @@ export default function LoggedIn() {
                 </div>
               </MacBrowserTab>
 
-              <MacBrowserTab title="Portfolio Diversification" icon={<PieChart className="w-4 h-4 text-neon-purple" />}>
+              <MacBrowserTab id="earn" title="Portfolio Diversification" icon={<PieChart className="w-4 h-4 text-neon-purple" />}>
                 <div className="p-6 space-y-4">
                   <h3 className="text-2xl font-orbitron font-semibold text-foreground">Strategic Allocation</h3>
                   <p className="text-muted-foreground font-rajdhani text-lg leading-relaxed">
@@ -80,7 +98,7 @@ export default function LoggedIn() {
 
             <div className="space-y-8">
               
-              <MacBrowserTab title="Risk Management" icon={<Shield className="w-4 h-4 text-neon-blue" />}>
+              <MacBrowserTab id="history" title="Risk Management" icon={<Shield className="w-4 h-4 text-neon-blue" />}>
                 <div className="p-6 space-y-4">
                   <h3 className="text-xl font-orbitron font-semibold text-foreground mb-2">Protecting Capital</h3>
                   <ul className="space-y-3 font-rajdhani text-muted-foreground">
@@ -104,7 +122,7 @@ export default function LoggedIn() {
                 </div>
               </MacBrowserTab>
 
-              <MacBrowserTab title="Security Best Practices" icon={<Shield className="w-4 h-4 text-neon-purple" />}>
+              <MacBrowserTab id="settings" title="Security Best Practices" icon={<Shield className="w-4 h-4 text-neon-purple" />}>
                 <div className="p-6 space-y-4">
                   <h3 className="text-xl font-orbitron font-semibold text-foreground mb-2">Operational Security</h3>
                   <p className="text-muted-foreground font-rajdhani mb-4">

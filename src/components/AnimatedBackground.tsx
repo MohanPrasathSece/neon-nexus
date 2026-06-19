@@ -18,7 +18,7 @@ export function AnimatedBackground() {
     window.addEventListener("resize", onResize);
 
     // particles
-    const particles = Array.from({ length: 80 }, () => ({
+    const particles = Array.from({ length: 30 }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
       vx: (Math.random() - 0.5) * 0.4,
@@ -52,13 +52,10 @@ export function AnimatedBackground() {
           }
         }
         ctx.fillStyle = `hsla(${a.hue}, 100%, 70%, 0.8)`;
-        ctx.shadowColor = `hsl(${a.hue}, 100%, 60%)`;
-        ctx.shadowBlur = 8;
         ctx.beginPath();
         ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
         ctx.fill();
       }
-      ctx.shadowBlur = 0;
       raf = requestAnimationFrame(tick);
     };
     tick();

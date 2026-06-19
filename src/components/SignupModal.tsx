@@ -2,6 +2,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Loader2, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -10,6 +12,8 @@ interface SignupModalProps {
 
 export function SignupModal({ isOpen, onClose }: SignupModalProps) {
   const [loading, setLoading] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -32,35 +36,41 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
         return;
       }
 
-      const response = await fetch("/api/crm", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: formData.name.split(" ")[0] || "",
-          lastName: formData.name.split(" ").slice(1).join(" ") || "",
-          email: formData.email,
-          phone: formData.phone,
-          notes: "Signup from Modal",
-          source: "signup-modal"
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to signup");
+      if (!consent) {
+        toast.error("You must acknowledge the risks to proceed.");
+        setLoading(false);
+        return;
       }
 
-      toast.success("Signup successful! Welcome to Nexus.");
+
+
+      const authResponse = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!authResponse.ok) {
+        const errorData = await authResponse.json().catch(() => null);
+        throw new Error(errorData?.error || "Failed to create auth profile");
+      }
+
+      toast.success("Signup successful! Welcome to ORBITX FINANCE.");
       setFormData({ name: "", email: "", phone: "" });
+      setConsent(false);
       onClose();
-    } catch (error) {
+      navigate("/logged-in");
+    } catch (error: any) {
       console.error(error);
-      toast.error("An error occurred during signup. Please try again.");
+      toast.error(error.message || "An error occurred during signup. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  return (
+  if (typeof document === 'undefined') return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -125,7 +135,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                     type="email" 
                     value={formData.email} 
                     onChange={handleChange} 
-                    placeholder="operator@nexus.crypto"
+                    placeholder="operator@ORBITX FINANCE.crypto"
                     required 
                     className="w-full bg-background/50 border border-[color:var(--neon-purple)]/30 rounded-lg px-4 py-3 text-foreground font-sans focus:outline-none focus:border-[color:var(--neon-purple)] focus:ring-1 focus:ring-[color:var(--neon-purple)] transition-all placeholder:text-muted-foreground/50" 
                   />
@@ -147,6 +157,19 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                   />
                 </div>
 
+                <div className="flex items-start gap-3 mt-4 pt-2">
+                  <input
+                    type="checkbox"
+                    id="consent"
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1 w-4 h-4 rounded border-[color:var(--neon-purple)]/50 bg-background/50 text-[color:var(--neon-purple)] focus:ring-[color:var(--neon-purple)]"
+                  />
+                  <label htmlFor="consent" className="text-xs text-muted-foreground leading-relaxed font-sans cursor-pointer">
+                    I acknowledge that cryptocurrency investments are highly volatile and carry significant risk. I have read and agree to the Terms & Conditions.
+                  </label>
+                </div>
+
                 <button 
                   type="submit" 
                   disabled={loading} 
@@ -162,6 +185,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

@@ -71,7 +71,7 @@ export function MarketCards() {
                       <div className="font-semibold">${m.vol}</div>
                     </div>
                   </div>
-                  <button className="relative mt-5 w-full py-2.5 rounded-lg font-display font-bold text-sm border border-[color:var(--neon-cyan)]/40 text-[color:var(--neon-cyan)] hover:bg-[color:var(--neon-cyan)]/10 transition-all">
+                  <button onClick={() => window.dispatchEvent(new CustomEvent("open-signup"))} className="relative mt-5 w-full py-2.5 rounded-lg font-display font-bold text-sm border border-[color:var(--neon-cyan)]/40 text-[color:var(--neon-cyan)] hover:bg-[color:var(--neon-cyan)]/10 transition-all">
                     TRADE NOW
                   </button>
                 </div>

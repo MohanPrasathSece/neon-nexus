@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { Loader2, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -25,21 +26,32 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
         return;
       }
 
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.error || "User not found or authentication failed.");
+      }
 
       toast.success("Authentication successful. Redirecting...");
       setEmail("");
       onClose();
       navigate("/logged-in");
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      toast.error("Authentication failed. Please try again.");
+      toast.error(error.message || "Authentication failed. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  return (
+  if (typeof document === 'undefined') return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -89,7 +101,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
                     type="email" 
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)} 
-                    placeholder="operator@nexus.crypto"
+                    placeholder="operator@ORBITX FINANCE.crypto"
                     required 
                     className="w-full bg-background/50 border border-[color:var(--neon-cyan)]/30 rounded-lg px-4 py-3 text-foreground font-sans focus:outline-none focus:border-[color:var(--neon-cyan)] focus:ring-1 focus:ring-[color:var(--neon-cyan)] transition-all placeholder:text-muted-foreground/50" 
                   />
@@ -102,7 +114,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 >
                   <span className="absolute inset-0 neon-gradient opacity-90 group-hover:opacity-100 transition-opacity" />
                   <span className="relative flex items-center gap-2 text-background font-display font-bold tracking-widest text-sm uppercase">
-                    {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Uplinking...</> : "Enter Nexus"}
+                    {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Uplinking...</> : "Enter ORBITX FINANCE"}
                   </span>
                 </button>
               </form>
@@ -110,6 +122,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

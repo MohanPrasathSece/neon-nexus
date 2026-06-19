@@ -1,7 +1,7 @@
 import { TiltCard } from "./TiltCard";
 
 const testimonials = [
-  { n: "Maya Chen", r: "Quant Trader", q: "Nexus replaced my entire stack. The AI signals alone paid for the year in two weeks." },
+  { n: "Maya Chen", r: "Quant Trader", q: "ORBITX FINANCE replaced my entire stack. The AI signals alone paid for the year in two weeks." },
   { n: "Diego Alvarez", r: "Crypto Fund GP", q: "Execution is faster than any prime broker I've used. The dashboards feel like a Bloomberg terminal from 2090." },
   { n: "Aiko Tanaka", r: "DeFi Builder", q: "I went from manual trades to a fully automated portfolio in one afternoon. Unreal product." },
   { n: "Marcus Webb", r: "Angel Investor", q: "The risk analytics caught a position blow-up before I did. Saved me six figures, no exaggeration." },

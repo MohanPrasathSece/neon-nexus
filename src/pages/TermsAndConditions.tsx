@@ -18,7 +18,7 @@ export default function TermsAndConditions() {
               
               <section className="space-y-4">
                 <h2 className="text-2xl font-orbitron font-semibold text-foreground">1. Acceptance of Terms</h2>
-                <p>By accessing and using Nexus (the "Website"), you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you must not use our website or services.</p>
+                <p>By accessing and using ORBITX FINANCE (the "Website"), you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you must not use our website or services.</p>
               </section>
 
               <section className="space-y-4">
@@ -28,7 +28,7 @@ export default function TermsAndConditions() {
 
               <section className="space-y-4">
                 <h2 className="text-2xl font-orbitron font-semibold text-foreground">3. Website Purpose</h2>
-                <p>Nexus is designed to provide informational and educational content related to cryptocurrency, digital investments, and blockchain technology. The tools and content provided are for educational and entertainment purposes only.</p>
+                <p>ORBITX FINANCE is designed to provide informational and educational content related to cryptocurrency, digital investments, and blockchain technology. The tools and content provided are for educational and entertainment purposes only.</p>
               </section>
 
               <section className="space-y-4">
@@ -48,7 +48,7 @@ export default function TermsAndConditions() {
 
               <section className="space-y-4">
                 <h2 className="text-2xl font-orbitron font-semibold text-foreground">7. Intellectual Property</h2>
-                <p>The Website and its original content, features, and functionality are owned by Nexus and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.</p>
+                <p>The Website and its original content, features, and functionality are owned by ORBITX FINANCE and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.</p>
               </section>
 
               <section className="space-y-4">
@@ -58,7 +58,7 @@ export default function TermsAndConditions() {
 
               <section className="space-y-4">
                 <h2 className="text-2xl font-orbitron font-semibold text-foreground">9. No Financial, Investment, Tax, or Legal Advice</h2>
-                <p>The content provided on Nexus does NOT constitute financial, investment, tax, or legal advice. You should consult with a qualified professional before making any financial decisions.</p>
+                <p>The content provided on ORBITX FINANCE does NOT constitute financial, investment, tax, or legal advice. You should consult with a qualified professional before making any financial decisions.</p>
               </section>
 
               <section className="space-y-4">
@@ -68,22 +68,22 @@ export default function TermsAndConditions() {
 
               <section className="space-y-4">
                 <h2 className="text-2xl font-orbitron font-semibold text-foreground">11. No Guarantee of Investment Returns</h2>
-                <p>Past performance is not indicative of future results. Nexus makes no representations or warranties regarding the likelihood or probability of investment success or returns.</p>
+                <p>Past performance is not indicative of future results. ORBITX FINANCE makes no representations or warranties regarding the likelihood or probability of investment success or returns.</p>
               </section>
 
               <section className="space-y-4">
                 <h2 className="text-2xl font-orbitron font-semibold text-foreground">12. Limitation of Liability</h2>
-                <p>In no event shall Nexus, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.</p>
+                <p>In no event shall ORBITX FINANCE, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.</p>
               </section>
 
               <section className="space-y-4">
                 <h2 className="text-2xl font-orbitron font-semibold text-foreground">13. Indemnification</h2>
-                <p>You agree to defend, indemnify and hold harmless Nexus and its licensee and licensors, and their employees, contractors, agents, officers and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses.</p>
+                <p>You agree to defend, indemnify and hold harmless ORBITX FINANCE and its licensee and licensors, and their employees, contractors, agents, officers and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses.</p>
               </section>
 
               <section className="space-y-4">
                 <h2 className="text-2xl font-orbitron font-semibold text-foreground">14. Third-Party Links</h2>
-                <p>Our Service may contain links to third-party web sites or services that are not owned or controlled by Nexus. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third party web sites or services.</p>
+                <p>Our Service may contain links to third-party web sites or services that are not owned or controlled by ORBITX FINANCE. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third party web sites or services.</p>
               </section>
 
               <section className="space-y-4">
@@ -118,7 +118,7 @@ export default function TermsAndConditions() {
 
               <section className="space-y-4">
                 <h2 className="text-2xl font-orbitron font-semibold text-foreground">21. Contact Information</h2>
-                <p>If you have any questions about these Terms, please contact us at legal@nexus.crypto or through our provided contact forms.</p>
+                <p>If you have any questions about these Terms, please contact us at legal@ORBITX FINANCE.crypto or through our provided contact forms.</p>
               </section>
 
             </div>

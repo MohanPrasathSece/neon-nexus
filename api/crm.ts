@@ -7,9 +7,13 @@ export default async function handler(req: any, res: any) {
   try {
     const { firstName, lastName, email, phone, notes, source } = req.body;
 
-    const crmToken = process.env.CRM_API_TOKEN || "AFF_1_92cbc1bc76284e19b711bab22587d75f"; // In production, this must be an environment variable
+    const crmToken = process.env.CRM_API_TOKEN;
+    const crmEndpoint = process.env.CRM_API_URL;
 
-    const crmEndpoint = "https://inwo.crmcore.me/api/lead_management/api/affiliates";
+    if (!crmToken || !crmEndpoint) {
+      console.error("Missing CRM credentials in environment variables.");
+      return res.status(500).json({ error: 'Server misconfiguration' });
+    }
 
     // Map fields according to assumed CRM API documentation
     const payload = {

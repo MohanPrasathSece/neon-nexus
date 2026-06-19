@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
               
               <section className="space-y-4">
                 <h2 className="text-2xl font-orbitron font-semibold text-foreground">1. Introduction</h2>
-                <p>Welcome to Nexus. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.</p>
+                <p>Welcome to ORBITX FINANCE. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.</p>
               </section>
 
               <section className="space-y-4">
@@ -113,7 +113,7 @@ export default function PrivacyPolicy() {
 
               <section className="space-y-4">
                 <h2 className="text-2xl font-orbitron font-semibold text-foreground">19. Contact Information</h2>
-                <p>If you have questions or comments about this policy, you may email us at privacy@nexus.crypto or via our contact forms available on the website.</p>
+                <p>If you have questions or comments about this policy, you may email us at privacy@ORBITX FINANCE.crypto or via our contact forms available on the website.</p>
               </section>
 
             </div>

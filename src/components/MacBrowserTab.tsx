@@ -1,14 +1,15 @@
 import { ReactNode } from "react";
 
 interface MacBrowserTabProps {
+  id?: string;
   title: string;
   icon?: ReactNode;
   children: ReactNode;
 }
 
-export function MacBrowserTab({ title, icon, children }: MacBrowserTabProps) {
+export function MacBrowserTab({ id, title, icon, children }: MacBrowserTabProps) {
   return (
-    <div className="rounded-xl border border-border/50 bg-card/40 backdrop-blur-md overflow-hidden shadow-2xl transition-all duration-300 hover:border-border hover:shadow-neon-blue/10">
+    <div id={id} className="rounded-xl border border-border/50 bg-card/40 backdrop-blur-md overflow-hidden shadow-2xl transition-all duration-300 hover:border-border hover:shadow-neon-blue/10">
       {/* Mac-style title bar */}
       <div className="bg-background/80 border-b border-border/50 px-4 py-3 flex items-center gap-4">
         <div className="flex gap-2">

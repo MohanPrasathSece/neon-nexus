@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Toaster } from "sonner";
+import { useEffect } from "react";
 import Home from "./pages/Home";
 import LoggedIn from "./pages/LoggedIn";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -6,9 +8,28 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+      return;
+    }
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+  return null;
+}
+
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
+      <Toaster theme="dark" position="top-center" />
       <div className="relative min-h-screen bg-background text-foreground flex flex-col">
         <Navbar />
         <main className="relative flex-1">

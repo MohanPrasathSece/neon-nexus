@@ -261,3 +261,7 @@
 }
 
 
+
+a, button, [role='button'], input[type='submit'] {
+  cursor: pointer;
+}
