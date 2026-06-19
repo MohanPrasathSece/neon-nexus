@@ -77,9 +77,9 @@ export function AnimatedBackground() {
       {/* scan line */}
       <div className="absolute inset-x-0 h-32 opacity-20" style={{ background: "linear-gradient(to bottom, transparent, var(--neon-cyan), transparent)", animation: "scan-line 8s linear infinite" }} />
       {/* aurora blobs */}
-      <div className="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full animate-pulse-glow" style={{ background: "var(--neon-cyan)", filter: "blur(120px)", opacity: 0.4 }} />
-      <div className="absolute top-1/3 -right-40 h-[700px] w-[700px] rounded-full animate-pulse-glow" style={{ background: "var(--neon-purple)", filter: "blur(140px)", opacity: 0.35, animationDelay: "1.5s" }} />
-      <div className="absolute bottom-0 left-1/3 h-[500px] w-[500px] rounded-full animate-pulse-glow" style={{ background: "var(--neon-pink)", filter: "blur(120px)", opacity: 0.25, animationDelay: "3s" }} />
+      <div className="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full animate-aurora" style={{ background: "var(--neon-cyan)", filter: "blur(120px)", opacity: 0.4 }} />
+      <div className="absolute top-1/3 -right-40 h-[700px] w-[700px] rounded-full animate-aurora" style={{ background: "var(--neon-purple)", filter: "blur(140px)", opacity: 0.35, animationDelay: "1.5s" }} />
+      <div className="absolute bottom-0 left-1/3 h-[500px] w-[500px] rounded-full animate-aurora" style={{ background: "var(--neon-pink)", filter: "blur(120px)", opacity: 0.25, animationDelay: "3s" }} />
       {/* particles canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
       {/* noise overlay */}

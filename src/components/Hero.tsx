@@ -44,7 +44,7 @@ export function Hero() {
           transition={{ delay: 0.2 }}
           className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full glass-panel text-xs font-semibold tracking-widest"
         >
-          <span className="h-2 w-2 rounded-full animate-pulse-glow" style={{ background: "var(--neon-cyan)", boxShadow: "0 0 12px var(--neon-cyan)" }} />
+          <span className="h-2 w-2 rounded-full animate-aurora" style={{ background: "var(--neon-cyan)", boxShadow: "0 0 12px var(--neon-cyan)" }} />
           LIVE · 1.2M+ INVESTORS ONLINE
         </motion.div>
 
