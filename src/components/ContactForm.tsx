@@ -7,6 +7,7 @@ import { Loader2 } from "lucide-react";
 
 export function ContactForm({ formId = "contact" }: { formId?: string }) {
   const [loading, setLoading] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,6 +18,7 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === 'phone') setPhoneError("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,8 +26,19 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
     setLoading(true);
 
     try {
+      const cleanNum = formData.phone.replace(/\s+/g, "");
+      if (!cleanNum) {
+        setPhoneError("Veuillez entrer un numéro de téléphone");
+        setLoading(false);
+        return;
+      } else if (!/^(\+41|0041|0)?[1-9]\d{8}$/.test(cleanNum)) {
+        setPhoneError("Veuillez entrer un numéro suisse valide (ex: 079 123 45 67)");
+        setLoading(false);
+        return;
+      }
+
       // Validate
-      if (!formData.name || !formData.email || !formData.phone) {
+      if (!formData.name || !formData.email) {
         toast.error("Veuillez remplir tous les champs obligatoires.");
         setLoading(false);
         return;
@@ -107,6 +120,7 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
               required
               className="bg-background/50 border-input font-rajdhani"
             />
+            {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
           </div>
         </div>
 

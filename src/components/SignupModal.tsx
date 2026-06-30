@@ -12,6 +12,7 @@ interface SignupModalProps {
 
 export function SignupModal({ isOpen, onClose }: SignupModalProps) {
   const [loading, setLoading] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
   const [consent, setConsent] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -23,6 +24,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === 'phone') setPhoneError("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,7 +32,18 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
     setLoading(true);
 
     try {
-      if (!formData.name || !formData.email || !formData.phone) {
+      const cleanNum = formData.phone.replace(/\s+/g, "");
+      if (!cleanNum) {
+        setPhoneError("Veuillez entrer un numéro de téléphone");
+        setLoading(false);
+        return;
+      } else if (!/^(\+41|0041|0)?[1-9]\d{8}$/.test(cleanNum)) {
+        setPhoneError("Veuillez entrer un numéro suisse valide (ex: 079 123 45 67)");
+        setLoading(false);
+        return;
+      }
+
+      if (!formData.name || !formData.email) {
         toast.error("Veuillez remplir tous les champs.");
         setLoading(false);
         return;
@@ -48,8 +61,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          firstName: formData.name.split(" ")[0] || "",
-          lastName: formData.name.split(" ").slice(1).join(" ") || "",
+          name: formData.name,
           email: formData.email,
           phone: formData.phone,
           notes: "Signup from Modal",
@@ -172,6 +184,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                     required 
                     className="w-full bg-background/50 border border-[color:var(--neon-purple)]/30 rounded-lg px-4 py-3 text-foreground font-sans focus:outline-none focus:border-[color:var(--neon-purple)] focus:ring-1 focus:ring-[color:var(--neon-purple)] transition-all placeholder:text-muted-foreground/50" 
                   />
+                  {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
                 </div>
 
                 <div className="flex items-start gap-3 mt-4 pt-2">

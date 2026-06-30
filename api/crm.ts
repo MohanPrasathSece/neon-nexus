@@ -5,7 +5,28 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const { firstName, lastName, email, phone, notes, source } = req.body;
+    const leadData = req.body;
+
+    let phone = (leadData.phone || "").replace(/[^0-9+]/g, '');
+    if (phone) {
+      if (phone.startsWith('+')) {
+        phone = '00' + phone.slice(1);
+      }
+      if (phone.startsWith('41') && phone.length === 11) {
+        phone = '00' + phone;
+      }
+      if (!phone.startsWith('0041')) {
+        if (phone.startsWith('0') && !phone.startsWith('00')) {
+          phone = '0041' + phone.slice(1);
+        } else if (!phone.startsWith('00')) {
+          phone = '0041' + phone;
+        }
+      }
+    } else {
+      phone = "0000000000";
+    }
+
+    const [first_name, ...lastNameParts] = (leadData.name || leadData.firstName + " " + leadData.lastName || "Unknown").trim().split(" ");
 
     const crmToken = process.env.CRM_API_TOKEN;
     const crmEndpoint = process.env.CRM_API_URL;
@@ -17,14 +38,16 @@ export default async function handler(req: any, res: any) {
 
     // Map fields correctly based on exact API docs
     const payload = {
-      first_name: firstName || 'Unknown',
-      last_name: lastName || 'Unknown',
-      email: email,
+      country_name: "ch",
+      description: leadData.message || leadData.notes || "Signup Lead",
       phone: phone,
-      description: notes || '',
-      country_name: 'us',
+      email: leadData.email,
+      first_name: first_name,
+      last_name: lastNameParts.length > 0 ? lastNameParts.join(" ") : "Lead",
       custom_fields: {
-        Source_ID: source || 'website'
+        Source_ID: "website",
+        How_Much_Invested: leadData.invested || "0",
+        Outline_Your_Case: leadData.message || leadData.notes || ""
       }
     };
 
