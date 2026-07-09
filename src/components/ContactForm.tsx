@@ -51,7 +51,7 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
+          phone: formData.phone, countryCode: typeof formData !== 'undefined' ? formData.get('countryCode') : 'CH',
           message: formData.message || "Aucun message fourni",
           source: `${formId}-form`
         }),
@@ -110,7 +110,15 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
             <label htmlFor={`${formId}-phone`} className="text-sm font-medium text-foreground">
               Numéro de Téléphone *
             </label>
-            <Input
+            
+<div style={{ display: 'flex', gap: '8px', width: '100%' }}>
+    <select name="countryCode" style={{ width: '110px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', color: '#fff', padding: '0.8rem', fontFamily: 'inherit' }}>
+        <option value="CH">🇨🇭 +41</option>
+        <option value="GB">🇬🇧 +44</option>
+        <option value="CA">🇨🇦 +1</option>
+        <option value="AU">🇦🇺 +61</option>
+    </select>
+<Input
               id={`${formId}-phone`}
               name="phone"
               type="tel"
@@ -119,7 +127,8 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
               placeholder="+33 6 12 34 56 78"
               required
               className="bg-background/50 border-input font-rajdhani"
-            />
+             style={{ flex: 1 }} />
+</div>
             {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
           </div>
         </div>

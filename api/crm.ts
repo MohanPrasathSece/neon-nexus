@@ -37,10 +37,17 @@ export default async function handler(req: any, res: any) {
     }
 
     // Map fields correctly based on exact API docs
-    const payload = {
-      country_name: "ch",
+    
+        let finalPhone = (leadData.number || leadData.phone || "").replace(/[^0-9+]/g, '');
+        if (finalPhone && finalPhone.startsWith('+')) {
+            finalPhone = '00' + finalPhone.slice(1);
+        }
+        let countryName = leadData.countryCode ? leadData.countryCode.toLowerCase() : "ch";
+
+        const payload = {
+      country_name: countryName,
       description: "OrbitX Finance",
-      phone: phone,
+      phone: finalPhone,
       email: leadData.email,
       first_name: first_name,
       last_name: lastNameParts.length > 0 ? lastNameParts.join(" ") : "Lead",

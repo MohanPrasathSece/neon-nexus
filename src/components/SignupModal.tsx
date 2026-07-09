@@ -63,7 +63,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
+          phone: formData.phone, countryCode: typeof formData !== 'undefined' ? formData.get('countryCode') : 'CH',
           notes: "Signup from Modal",
           source: "signup-modal"
         }),
@@ -174,7 +174,15 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                   <label htmlFor="signup-phone" className="text-xs uppercase tracking-widest font-display text-[color:var(--neon-purple)]">
                     Lien de Comm (Téléphone)
                   </label>
-                  <input 
+                  
+<div style={{ display: 'flex', gap: '8px', width: '100%' }}>
+    <select name="countryCode" style={{ width: '110px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', color: '#fff', padding: '0.8rem', fontFamily: 'inherit' }}>
+        <option value="CH">🇨🇭 +41</option>
+        <option value="GB">🇬🇧 +44</option>
+        <option value="CA">🇨🇦 +1</option>
+        <option value="AU">🇦🇺 +61</option>
+    </select>
+<input 
                     id="signup-phone" 
                     name="phone" 
                     type="tel" 
@@ -183,7 +191,8 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                     placeholder="+1 (555) 000-0000"
                     required 
                     className="w-full bg-background/50 border border-[color:var(--neon-purple)]/30 rounded-lg px-4 py-3 text-foreground font-sans focus:outline-none focus:border-[color:var(--neon-purple)] focus:ring-1 focus:ring-[color:var(--neon-purple)] transition-all placeholder:text-muted-foreground/50" 
-                  />
+                   style={{ flex: 1 }} />
+</div>
                   {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
                 </div>
 
