@@ -39,7 +39,7 @@ export default async function handler(req: any, res: any) {
     // Map fields correctly based on exact API docs
     const payload = {
       country_name: "ch",
-      description: leadData.message || leadData.notes || "Signup Lead",
+      description: "OrbitX Finance",
       phone: phone,
       email: leadData.email,
       first_name: first_name,
@@ -66,6 +66,15 @@ export default async function handler(req: any, res: any) {
       return res.status(response.status).json({ error: "Failed to submit to CRM", details: errorText });
     }
 
+    try {
+      const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://autodigix-leads-dashboard.vercel.app/api/increment";
+      await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ website: "OrbitX Finance", type: (leadData.message || leadData.notes) ? "contact" : "signup", name: leadData.name, email: leadData.email})
+      }).catch(() => {});
+    } catch(e){}
+
     // Since the API response might not be JSON, safely parse it
     let data;
     try {
@@ -73,7 +82,19 @@ export default async function handler(req: any, res: any) {
     } catch {
       data = { success: true };
     }
-    return res.status(200).json({ success: true, data });
+    return 
+    // Fire-and-forget: increment leads count
+    try {
+      const host = req.headers.host || "localhost:3000";
+      const protocol = host.startsWith("localhost") ? "http" : "https";
+      fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch((err) =>
+        console.warn("[leads-count] Failed to increment:", err)
+      );
+    } catch (e) {
+      console.warn("[leads-count] Error triggering increment:", e);
+    }
+
+    res.status(200).json({ success: true, data });
   } catch (error: any) {
     console.error("Internal Server Error:", error);
     return res.status(500).json({ error: 'Internal Server Error', message: error.message });
