@@ -33,8 +33,11 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.error || "Utilisateur non trouvé ou échec de l'authentification.");
+        const errorData = await response.clone().text().catch(()=>"");
+        if (errorData.includes("already exist")) {
+            throw new Error("You have already contacted us pls wait");
+        }
+        throw new Error("Échec de la soumission");
       }
 
       toast.success("Authentification réussie. Redirection...");

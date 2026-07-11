@@ -44,28 +44,35 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
         return;
       }
 
-      // Submit to our secure serverless endpoint
+      const formTarget = e.target as HTMLFormElement;
+      const countryCodeSelect = formTarget.elements.namedItem("countryCode") as HTMLSelectElement;
+      
       const response = await fetch("/api/crm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone, countryCode: typeof formData !== 'undefined' ? formData.get('countryCode') : 'CH',
+          phone: formData.phone,
+          countryCode: countryCodeSelect ? countryCodeSelect.value : 'CH',
           message: formData.message || "Aucun message fourni",
           source: `${formId}-form`
         }),
       });
 
       if (!response.ok) {
-        throw new Error("Échec de la soumission de la demande");
+        const errorData = await response.clone().text().catch(()=>"");
+        if (errorData.includes("already exist")) {
+            throw new Error("You have already contacted us pls wait");
+        }
+        throw new Error("Échec de la soumission");
       }
 
       toast.success("Demande reçue avec succès ! Notre équipe vous contactera sous peu.");
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
       console.error(error);
-      toast.error("Une erreur s'est produite lors de la soumission. Veuillez réessayer.");
+      toast.error((error && error.message && error.message.includes("already exist")) ? "You have already contacted us pls wait" : "Une erreur s\'est produite lors de la soumission. Veuillez réessayer.");
     } finally {
       setLoading(false);
     }

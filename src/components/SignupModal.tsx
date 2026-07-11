@@ -14,6 +14,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
   const [loading, setLoading] = useState(false);
   const [phoneError, setPhoneError] = useState("");
   const [consent, setConsent] = useState(false);
+  const [countryCode, setCountryCode] = useState("CH");
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
@@ -63,13 +64,20 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone, countryCode: typeof formData !== 'undefined' ? formData.get('countryCode') : 'CH',
+          phone: formData.phone,
+          countryCode: countryCode,
           notes: "Signup from Modal",
           source: "signup-modal"
         }),
       });
 
       if (!crmResponse.ok) {
+        const errText = await crmResponse.clone().text().catch(() => "");
+        if (errText.toLowerCase().includes("already exist")) {
+          toast.error("Vous nous avez déjà contactés. Veuillez patienter, notre équipe vous contactera bientôt.");
+          setLoading(false);
+          return;
+        }
         throw new Error("Échec de la synchronisation du profil avec le CRM. Veuillez réessayer.");
       }
 
@@ -174,25 +182,32 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                   <label htmlFor="signup-phone" className="text-xs uppercase tracking-widest font-display text-[color:var(--neon-purple)]">
                     Lien de Comm (Téléphone)
                   </label>
-                  
-<div style={{ display: 'flex', gap: '8px', width: '100%' }}>
-    <select name="countryCode" style={{ width: '110px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', color: '#fff', padding: '0.8rem', fontFamily: 'inherit' }}>
-        <option value="CH">🇨🇭 +41</option>
-        <option value="GB">🇬🇧 +44</option>
-        <option value="CA">🇨🇦 +1</option>
-        <option value="AU">🇦🇺 +61</option>
-    </select>
-<input 
-                    id="signup-phone" 
-                    name="phone" 
-                    type="tel" 
-                    value={formData.phone} 
-                    onChange={handleChange} 
-                    placeholder="+1 (555) 000-0000"
-                    required 
-                    className="w-full bg-background/50 border border-[color:var(--neon-purple)]/30 rounded-lg px-4 py-3 text-foreground font-sans focus:outline-none focus:border-[color:var(--neon-purple)] focus:ring-1 focus:ring-[color:var(--neon-purple)] transition-all placeholder:text-muted-foreground/50" 
-                   style={{ flex: 1 }} />
-</div>
+                  <div style={{ display: 'flex', gap: '8px', width: '100%' }}>
+                    <select
+                      name="countryCode"
+                      value={countryCode}
+                      onChange={(e) => setCountryCode(e.target.value)}
+                      style={{ width: '110px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', color: '#fff', padding: '0.8rem', fontFamily: 'inherit' }}
+                    >
+                      <option value="CH">🇨🇭 +41</option>
+                      <option value="GB">🇬🇧 +44</option>
+                      <option value="CA">🇨🇦 +1</option>
+                      <option value="AU">🇦🇺 +61</option>
+                      <option value="FR">🇫🇷 +33</option>
+                      <option value="DE">🇩🇪 +49</option>
+                    </select>
+                    <input
+                      id="signup-phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="79 123 45 67"
+                      required
+                      className="w-full bg-background/50 border border-[color:var(--neon-purple)]/30 rounded-lg px-4 py-3 text-foreground font-sans focus:outline-none focus:border-[color:var(--neon-purple)] focus:ring-1 focus:ring-[color:var(--neon-purple)] transition-all placeholder:text-muted-foreground/50"
+                      style={{ flex: 1 }}
+                    />
+                  </div>
                   {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
                 </div>
 
