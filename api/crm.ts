@@ -70,7 +70,7 @@ export default async function handler(req: any, res: any) {
     if (!response.ok) {
     const errorText = await response.clone().text().catch(()=>"");
     if (errorText.toLowerCase().includes("already exist") || errorText.toLowerCase().includes("already exists")) {
-        throw new Error("You have already contacted us pls wait");
+        throw new Error("Failed to create account: Account already exist!");
     }
 
       console.error("CRM Error:", errorText);

@@ -98,6 +98,14 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
       onClose();
       navigate("/logged-in");
     } catch (error: any) {
+      const rawMsg = (error?.message || error?.toString() || "");
+      if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists")) {
+        toast.error("Account already exists");
+        if (typeof setError === 'function') setError("Account already exists");
+        setLoading(false);
+        return;
+      }
+
       console.error(error);
       toast.error(error.message || "Une erreur s'est produite lors de l'inscription. Veuillez réessayer.");
     } finally {
