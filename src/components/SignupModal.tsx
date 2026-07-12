@@ -100,8 +100,6 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
     } catch (error: any) {
       const rawMsg = (error?.message || error?.toString() || "");
       if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists")) {
-        toast.error("Account already exists");
-        if (typeof setError === 'function') setError("Account already exists");
         setLoading(false);
         return;
       }
