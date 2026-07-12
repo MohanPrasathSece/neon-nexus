@@ -39,11 +39,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
         setPhoneError("Veuillez entrer un numéro de téléphone");
         setLoading(false);
         return;
-      } else if (!/^(\+41|0041|0)?[1-9]\d{8}$/.test(cleanNum)) {
-        setPhoneError("Veuillez entrer un numéro suisse valide (ex: 079 123 45 67)");
-        setLoading(false);
-        return;
-      }
+      } 
 
       if (!formData.name || !formData.email) {
         toast.error("Veuillez remplir tous les champs.");
