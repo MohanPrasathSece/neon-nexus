@@ -4,10 +4,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export function ContactForm({ formId = "contact" }: { formId?: string }) {
   const [loading, setLoading] = useState(false);
   const [phoneError, setPhoneError] = useState("");
+  const [countryCode, setCountryCode] = useState("CH");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -44,9 +46,6 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
         return;
       }
 
-      const formTarget = e.target as HTMLFormElement;
-      const countryCodeSelect = formTarget.elements.namedItem("countryCode") as HTMLSelectElement;
-      
       const response = await fetch("/api/crm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -54,7 +53,7 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          countryCode: countryCodeSelect ? countryCodeSelect.value : 'CH',
+          countryCode: countryCode,
           message: formData.message || "Aucun message fourni",
           source: `${formId}-form`
         }),
@@ -119,21 +118,27 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
             </label>
             
 <div style={{ display: 'flex', gap: '8px', width: '100%' }}>
-    <select name="countryCode" style={{ width: '110px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', color: '#fff', padding: '0.8rem', fontFamily: 'inherit' }}>
-        <option value="FR">🇫🇷 +33</option>
-        <option value="BE">🇧🇪 +32</option>
-        <option value="CH">🇨🇭 +41</option>
-        <option value="NL">🇳🇱 +31</option>
-        <option value="DE">🇩🇪 +49</option>
-        <option value="ES">🇪🇸 +34</option>
-        <option value="IT">🇮🇹 +39</option>
-        <option value="AT">🇦🇹 +43</option>
-        <option value="SE">🇸🇪 +46</option>
-        <option value="GB">🇬🇧 +44</option>
-        <option value="US">🇺🇸 +1</option>
-        <option value="CA">🇨🇦 +1</option>
-        <option value="AU">🇦🇺 +61</option>
-    </select>
+    <Select value={countryCode} onValueChange={setCountryCode}>
+      <SelectTrigger className="w-[110px] bg-background/50 border-input font-rajdhani text-foreground h-10">
+        <SelectValue placeholder="Code" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="FR">🇫🇷 +33</SelectItem>
+        <SelectItem value="BE">🇧🇪 +32</SelectItem>
+        <SelectItem value="CH">🇨🇭 +41</SelectItem>
+        <SelectItem value="NL">🇳🇱 +31</SelectItem>
+        <SelectItem value="DE">🇩🇪 +49</SelectItem>
+        <SelectItem value="ES">🇪🇸 +34</SelectItem>
+        <SelectItem value="IT">🇮🇹 +39</SelectItem>
+        <SelectItem value="AT">🇦🇹 +43</SelectItem>
+        <SelectItem value="SE">🇸🇪 +46</SelectItem>
+        <SelectItem value="GB">🇬🇧 +44</SelectItem>
+        <SelectItem value="US">🇺🇸 +1</SelectItem>
+        <SelectItem value="CA">🇨🇦 +1</SelectItem>
+        <SelectItem value="AU">🇦🇺 +61</SelectItem>
+        <SelectItem value="IN">🇮🇳 +91</SelectItem>
+      </SelectContent>
+    </Select>
 <Input
               id={`${formId}-phone`}
               name="phone"

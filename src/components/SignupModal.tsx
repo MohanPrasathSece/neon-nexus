@@ -4,6 +4,7 @@ import { Loader2, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -189,26 +190,27 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                     Lien de Comm (Téléphone)
                   </label>
                   <div style={{ display: 'flex', gap: '8px', width: '100%' }}>
-                    <select
-                      name="countryCode"
-                      value={countryCode}
-                      onChange={(e) => setCountryCode(e.target.value)}
-                      style={{ width: '110px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', color: '#fff', padding: '0.8rem', fontFamily: 'inherit' }}
-                    >
-                      <option value="FR">🇫🇷 +33</option>
-                      <option value="BE">🇧🇪 +32</option>
-                      <option value="CH">🇨🇭 +41</option>
-                      <option value="NL">🇳🇱 +31</option>
-                      <option value="DE">🇩🇪 +49</option>
-                      <option value="ES">🇪🇸 +34</option>
-                      <option value="IT">🇮🇹 +39</option>
-                      <option value="AT">🇦🇹 +43</option>
-                      <option value="SE">🇸🇪 +46</option>
-                      <option value="GB">🇬🇧 +44</option>
-                      <option value="US">🇺🇸 +1</option>
-                      <option value="CA">🇨🇦 +1</option>
-                      <option value="AU">🇦🇺 +61</option>
-                    </select>
+                    <Select value={countryCode} onValueChange={setCountryCode}>
+                      <SelectTrigger className="w-[110px] bg-background/50 border-[color:var(--neon-purple)]/30 text-foreground h-[46px] rounded-lg">
+                        <SelectValue placeholder="Code" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="FR">🇫🇷 +33</SelectItem>
+                        <SelectItem value="BE">🇧🇪 +32</SelectItem>
+                        <SelectItem value="CH">🇨🇭 +41</SelectItem>
+                        <SelectItem value="NL">🇳🇱 +31</SelectItem>
+                        <SelectItem value="DE">🇩🇪 +49</SelectItem>
+                        <SelectItem value="ES">🇪🇸 +34</SelectItem>
+                        <SelectItem value="IT">🇮🇹 +39</SelectItem>
+                        <SelectItem value="AT">🇦🇹 +43</SelectItem>
+                        <SelectItem value="SE">🇸🇪 +46</SelectItem>
+                        <SelectItem value="GB">🇬🇧 +44</SelectItem>
+                        <SelectItem value="US">🇺🇸 +1</SelectItem>
+                        <SelectItem value="CA">🇨🇦 +1</SelectItem>
+                        <SelectItem value="AU">🇦🇺 +61</SelectItem>
+                        <SelectItem value="IN">🇮🇳 +91</SelectItem>
+                      </SelectContent>
+                    </Select>
                     <input
                       id="signup-phone"
                       name="phone"
