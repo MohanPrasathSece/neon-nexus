@@ -1,113 +1,167 @@
 // Vercel Serverless Function
+
+const COUNTRY_DIAL_CODES: Record<string, string> = {
+  CH: "41",
+  FR: "33",
+  BE: "32",
+  CA: "1",
+  US: "1",
+  GB: "44",
+  DE: "49",
+  ES: "34",
+  IT: "39",
+  NL: "31",
+  SE: "46",
+  AU: "61",
+  IN: "91",
+  AE: "971",
+  SG: "65",
+  ZA: "27",
+  BR: "55",
+  MX: "52",
+  JP: "81",
+  CY: "357",
+  AT: "43",
+};
+
+function formatPhoneForCrm(rawPhone: string, countryCode: string): string {
+  // Strip everything except digits
+  let digits = rawPhone.replace(/[^0-9]/g, "");
+
+  const dialCode = COUNTRY_DIAL_CODES[countryCode] || "41";
+
+  // Remove any leading country dial code prefixes to avoid duplication
+  for (const code of Object.values(COUNTRY_DIAL_CODES)) {
+    if (digits.startsWith("00" + code)) {
+      digits = digits.slice(2 + code.length);
+      break;
+    }
+    if (digits.startsWith(code) && digits.length > code.length + 5) {
+      digits = digits.slice(code.length);
+      break;
+    }
+  }
+
+  // Remove a leading zero from local number
+  if (digits.startsWith("0")) {
+    digits = digits.slice(1);
+  }
+
+  // Return CRM format: 00 + dialCode + localNumber
+  return "00" + dialCode + digits;
+}
+
 export default async function handler(req: any, res: any) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
+  // CORS preflight
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  if (req.method === "OPTIONS") return res.status(200).end();
+
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
   }
 
   try {
     const leadData = req.body;
 
-    let phone = (leadData.phone || "").replace(/[^0-9+]/g, '');
-    if (phone) {
-      if (phone.startsWith('+')) {
-        phone = '00' + phone.slice(1);
-      }
-      if (phone.startsWith('41') && phone.length === 11) {
-        phone = '00' + phone;
-      }
-      if (!phone.startsWith('0041')) {
-        if (phone.startsWith('0') && !phone.startsWith('00')) {
-          phone = '0041' + phone.slice(1);
-        } else if (!phone.startsWith('00')) {
-          phone = '0041' + phone;
-        }
-      }
-    } else {
-      phone = "0000000000";
-    }
+    // Determine lead type (signup vs contact)
+    const leadType: "signup" | "contact" =
+      leadData.source && leadData.source.includes("signup") ? "signup" : "contact";
 
-    const [first_name, ...lastNameParts] = (leadData.name || leadData.firstName + " " + leadData.lastName || "Unknown").trim().split(" ");
+    const rawPhone = (leadData.phone || leadData.number || "").trim();
+    const countryCodeKey = (leadData.countryCode || "CH").toUpperCase();
+    const formattedPhone = rawPhone
+      ? formatPhoneForCrm(rawPhone, countryCodeKey)
+      : "0000000000";
+
+    const countryName = countryCodeKey.toLowerCase();
+
+    const [first_name, ...lastNameParts] = (
+      leadData.name ||
+      (leadData.firstName ? leadData.firstName + " " + leadData.lastName : "Unknown")
+    )
+      .trim()
+      .split(" ");
 
     const crmToken = process.env.CRM_API_TOKEN;
     const crmEndpoint = process.env.CRM_API_URL;
 
     if (!crmToken || !crmEndpoint) {
       console.error("Missing CRM credentials in environment variables.");
-      return res.status(500).json({ error: 'Server misconfiguration' });
+      return res.status(500).json({ error: "Server misconfiguration" });
     }
 
-    // Map fields correctly based on exact API docs
-    
-        let finalPhone = (leadData.number || leadData.phone || "").replace(/[^0-9+]/g, '');
-        if (finalPhone && finalPhone.startsWith('+')) {
-            finalPhone = '00' + finalPhone.slice(1);
-        }
-        let countryName = leadData.countryCode ? leadData.countryCode.toLowerCase() : "ch";
-
-        const payload = {
+    const payload = {
       country_name: countryName,
       description: "OrbitX Finance",
-      phone: finalPhone,
+      phone: formattedPhone,
       email: leadData.email,
       first_name: first_name,
       last_name: lastNameParts.length > 0 ? lastNameParts.join(" ") : "Lead",
       custom_fields: {
         Source_ID: "website",
         How_Much_Invested: leadData.invested || "0",
-        Outline_Your_Case: leadData.message || leadData.notes || ""
-      }
+        Outline_Your_Case: leadData.message || leadData.notes || "",
+      },
     };
 
     const response = await fetch(crmEndpoint, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'authorization': crmToken
+        "Content-Type": "application/json",
+        authorization: crmToken,
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
-    const errorText = await response.clone().text().catch(()=>"");
-    if (errorText.toLowerCase().includes("already exist") || errorText.toLowerCase().includes("already exists")) {
-        throw new Error("Failed to create account: Account already exist!");
-    }
+      const errorText = await response.clone().text().catch(() => "");
 
+      // Account already exists — return a specific status so the frontend can handle it
+      if (
+        errorText.toLowerCase().includes("already exist") ||
+        errorText.toLowerCase().includes("already exists")
+      ) {
+        return res.status(409).json({ error: "already_exists" });
+      }
+
+      // Invalid lead / validation error from CRM
       console.error("CRM Error:", errorText);
-      return res.status(response.status).json({ error: "Failed to submit to CRM", details: errorText });
+      return res.status(422).json({ error: "invalid_lead", details: errorText });
     }
 
+    // ✅ CRM accepted — now increment the lead dashboard counter
     try {
-      const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://lead-dashboard-orcin.vercel.app/api/increment";
-      await fetch(url, {
+      const dashboardUrl =
+        process.env.VITE_DASHBOARD_URL ||
+        "https://lead-dashboard-orcin.vercel.app/api/increment";
+      await fetch(dashboardUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ website: "OrbitX Finance", type: (leadData.message || leadData.notes) ? "contact" : "signup", name: leadData.name, email: leadData.email})
+        body: JSON.stringify({
+          website: "OrbitX Finance",
+          type: leadType,
+          name: leadData.name,
+          email: leadData.email,
+        }),
       }).catch(() => {});
-    } catch(e){}
+    } catch (e) {
+      // fire-and-forget, never fail the main response
+    }
 
-    // Since the API response might not be JSON, safely parse it
-    let data;
+    let data: any;
     try {
       data = await response.json();
     } catch {
       data = { success: true };
     }
-    return 
-    // Fire-and-forget: increment leads count
-    try {
-      const host = req.headers.host || "localhost:3000";
-      const protocol = host.startsWith("localhost") ? "http" : "https";
-      fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch((err) =>
-        console.warn("[leads-count] Failed to increment:", err)
-      );
-    } catch (e) {
-      console.warn("[leads-count] Error triggering increment:", e);
-    }
 
-    res.status(200).json({ success: true, data });
+    return res.status(200).json({ success: true, data });
   } catch (error: any) {
     console.error("Internal Server Error:", error);
-    return res.status(500).json({ error: 'Internal Server Error', message: error.message });
+    return res
+      .status(500)
+      .json({ error: "Internal Server Error", message: error.message });
   }
 }

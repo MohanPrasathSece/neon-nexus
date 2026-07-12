@@ -263,3 +263,56 @@
 a, button, [role='button'], input[type='submit'] {
   cursor: pointer;
 }
+
+/* ── Country code dropdown global styles ── */
+[data-radix-select-content] {
+  z-index: 9999 !important;
+}
+
+/* Ensure SelectContent opens downward by default */
+[data-side="bottom"] {
+  animation-name: slideDownAndFade;
+}
+
+@keyframes slideDownAndFade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Style the SelectTrigger to match other inputs */
+[data-radix-select-trigger] {
+  background: oklch(0.08 0.02 250 / 0.5);
+  border-color: oklch(0.6 0.25 275 / 0.3);
+  color: var(--foreground);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+[data-radix-select-trigger]:focus-visible,
+[data-radix-select-trigger][data-state="open"] {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 0 1px var(--neon-cyan);
+  outline: none;
+}
+
+/* SelectContent dropdown panel */
+[data-radix-select-content] {
+  background: oklch(0.1 0.03 250 / 0.98) !important;
+  border: 1px solid oklch(0.6 0.2 220 / 0.25) !important;
+  backdrop-filter: blur(16px);
+  border-radius: 0.5rem;
+  box-shadow: 0 16px 40px oklch(0 0 0 / 0.5);
+}
+
+/* Individual items */
+[data-radix-select-item] {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+[data-radix-select-item][data-highlighted] {
+  background: oklch(0.6 0.25 275 / 0.2) !important;
+  color: var(--neon-cyan) !important;
+  outline: none;
+}
+
