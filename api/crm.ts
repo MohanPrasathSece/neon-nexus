@@ -98,7 +98,7 @@ export default async function handler(req: any, res: any) {
       phone: formattedPhone,
       email: leadData.email,
       first_name: first_name,
-      last_name: lastNameParts.length > 0 ? lastNameParts.join(" ") : "Lead",
+      last_name: lastNameParts.length > 0 ? lastNameParts.join(" ") : "",
       custom_fields: {
         Source_ID: "website",
         How_Much_Invested: leadData.invested || "0",
