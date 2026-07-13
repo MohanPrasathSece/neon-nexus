@@ -4,6 +4,7 @@ import { Loader2, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
+import { trackPixelEvent } from "@/lib/pixel";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -41,6 +42,13 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
       }
 
       toast.success("Authentification réussie. Redirection...");
+      
+      // Track Meta Pixel Lead/Login event
+      trackPixelEvent("Lead", {
+        content_name: "Login Modal",
+        email: email
+      });
+
       setEmail("");
       onClose();
       navigate("/logged-in");

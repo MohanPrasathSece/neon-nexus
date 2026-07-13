@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { trackPixelEvent } from "@/lib/pixel";
 import {
   Select,
   SelectContent,
@@ -122,6 +123,13 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
       toast.success(
         "Demande reçue avec succès ! Notre équipe vous contactera sous peu."
       );
+      
+      // Track Meta Pixel Lead event
+      trackPixelEvent("Lead", {
+        content_name: `${formId}-form`,
+        email: formData.email
+      });
+
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error: any) {
       console.error(error);

@@ -7,9 +7,16 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { trackPixelEvent } from "./lib/pixel";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
+  
+  useEffect(() => {
+    // Track PageView on route changes
+    trackPixelEvent("PageView");
+  }, [pathname]);
+
   useEffect(() => {
     if (hash) {
       setTimeout(() => {

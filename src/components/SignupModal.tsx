@@ -2,6 +2,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Loader2, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackPixelEvent } from "@/lib/pixel";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import {
@@ -140,6 +141,17 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
       }
 
       toast.success("Inscription réussie ! Bienvenue sur ORBITX FINANCE.");
+      
+      // Track Meta Pixel CompleteRegistration and Lead events
+      trackPixelEvent("CompleteRegistration", {
+        content_name: "Signup Modal",
+        status: "success"
+      });
+      trackPixelEvent("Lead", {
+        content_name: "Signup Modal",
+        email: formData.email
+      });
+
       setFormData({ name: "", email: "", phone: "" });
       setConsent(false);
       onClose();
