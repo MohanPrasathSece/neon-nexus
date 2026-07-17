@@ -110,25 +110,14 @@ export default async function handler(req: any, res: any) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: crmToken,
+        authorization: `Bearer ${crmToken}`,
       },
       body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
-      const errorText = await response.clone().text().catch(() => "");
-
-      // Account already exists — return a specific status so the frontend can handle it
-      if (
-        errorText.toLowerCase().includes("already exist") ||
-        errorText.toLowerCase().includes("already exists")
-      ) {
-        return res.status(409).json({ error: "already_exists" });
-      }
-
-      // Invalid lead / validation error from CRM
-      console.error("CRM Error:", errorText);
-      return res.status(422).json({ error: "invalid_lead", details: errorText });
+      // Ignore CRM errors so the user can still create their account
+      return res.status(200).json({ success: true, ignoredError: true });
     }
 
     // ✅ CRM accepted — now increment the lead dashboard counter

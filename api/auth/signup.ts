@@ -66,8 +66,10 @@ export default async function handler(req: any, res: any) {
       filename,
       JSON.stringify({ name, email, phone: formattedPhone, country }),
       {
-        access: "private",
+        access: "public",
         token: process.env.BLOB_READ_WRITE_TOKEN,
+        addRandomSuffix: false,
+        cacheControlMaxAge: 0,
       }
     );
 
