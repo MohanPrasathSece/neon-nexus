@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 
 const COUNTRY_OPTIONS = [
+  { code: "IE", flag: "🇮🇪", dialCode: "+353", label: "Ireland", pattern: /^[0-9]{9}$/, example: "87 123 4567" },
   { code: "CH", flag: "🇨🇭", dialCode: "+41", label: "Suisse", pattern: /^[0-9]{9}$/, example: "79 123 45 67" },
   { code: "FR", flag: "🇫🇷", dialCode: "+33", label: "France", pattern: /^[0-9]{9}$/, example: "6 12 34 56 78" },
   { code: "BE", flag: "🇧🇪", dialCode: "+32", label: "Belgique", pattern: /^[0-9]{8,9}$/, example: "471 23 45 67" },
