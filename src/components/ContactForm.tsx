@@ -121,9 +121,7 @@ export function ContactForm({ formId = "contact" }: { formId?: string }) {
         throw new Error("Échec de la soumission");
       }
 
-      toast.success(
-        "Demande reçue avec succès ! Notre équipe vous contactera sous peu."
-      );
+      toast.success("Merci de nous avoir contactés. Votre message a bien été reçu et notre équipe vous répondra dans les plus brefs délais.");
       
       // Track Meta Pixel Lead event
       trackPixelEvent("Lead", {

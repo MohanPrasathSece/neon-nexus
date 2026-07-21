@@ -41,7 +41,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
         throw new Error("Échec de la soumission");
       }
 
-      toast.success("Authentification réussie. Redirection...");
+      toast.success("Merci de nous avoir contactés. Votre message a bien été reçu et notre équipe vous répondra dans les plus brefs délais.");
       
       // Track Meta Pixel Lead/Login event
       trackPixelEvent("Lead", {

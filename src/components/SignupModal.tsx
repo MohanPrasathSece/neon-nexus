@@ -141,7 +141,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
         throw new Error(errorData?.error || "Échec de la création du profil d'authentification");
       }
 
-      toast.success("Inscription réussie ! Bienvenue sur ORBITX FINANCE.");
+      toast.success("Merci de nous avoir contactés. Votre message a bien été reçu et notre équipe vous répondra dans les plus brefs délais.");
       
       // Track Meta Pixel CompleteRegistration and Lead events
       trackPixelEvent("CompleteRegistration", {
